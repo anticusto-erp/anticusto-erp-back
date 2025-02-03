@@ -18,10 +18,10 @@ export class PoolConnection {
     static create(){
         if(!this.pool){
             this.pool = mysql.createPool({
-                host: "localhost",
-                user: "root",
-                password: "",
-                database: "anticusto_erp",
+                host: process.env.HOST,
+                user: process.env.USER,
+                password: process.env.PASSWORD,
+                database: process.env.DATABASE,
                 waitForConnections: true
             }).promise();
         }

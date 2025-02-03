@@ -1,10 +1,14 @@
 import { ApiExpress } from "./infra/http/express/api.express";
-import { CreateStoreRoute } from "./infra/http/express/routes/store/store";
+import { CreateStoreRoute } from "./infra/http/express/routes/store/create-store";
 import { StoreRepository } from "./infra/repositories/store/store.repository";
 import { CreateStoreUsecase } from "./use-case/store/create/create-store.usecase";
 
-function main(){
+import * as dotenv from "dotenv";
 
+
+function main(){
+    dotenv.config();
+    
     const aStoreRepository = StoreRepository.create();
     
     const createStoreUsecase = CreateStoreUsecase.create(aStoreRepository);
