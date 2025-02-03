@@ -23,25 +23,13 @@ export class StoreRepository implements StoreGateway{
 
         const [rows] = await this.pool.execute("select * from loja");
 
-        // const rs = rows.map((p) => {
-        //     return p[0]
-        // })
-
-        // console.log("roes", rs)
-
         return rows as Store[];
 
 
     }
 
-    // async findBiId(id: string): Promise<Store | null> {
-    //     const [rows] = await pool.execute("select * from loja where id = ?", [id]);
+    async delete(id: string): Promise<void>{
+        await this.pool.execute(`delete from loja where id = ?`, [id]);
+    }
 
-    //     if(rows.)
-
-    // }
-
-    // list(): Promise<Store[]> {
-
-    // }
 }
