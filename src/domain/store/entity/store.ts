@@ -1,21 +1,21 @@
 export type StoreProps = {
-    id?: string | undefined;
-    name_store: string;
-    address: string;
-    contact: string;
-    tenant_key?: string | undefined;
+    id?: string;
+    nome: string;
+    endereco: string;
+    contacto: string;
+    tenant_key?: string;
 }
 
 export class Store {
 
     private constructor(private prop: StoreProps){}
 
-    public static create(name_store: string, address: string, contact: string){
+    public static create(nome: string, endereco: string, contacto: string){
         return new Store({
             id: crypto.randomUUID().toString(),
-            name_store,
-            address,
-            contact,
+            nome,
+            endereco,
+            contacto,
             tenant_key: crypto.randomUUID().toString()
         });
     }
@@ -28,16 +28,16 @@ export class Store {
         return this.prop.id;
     }
 
-    public get name_store(){
-        return this.prop.name_store;
+    public get nome(){
+        return this.prop.nome;
     }
 
-    public get address(){
-        return this.prop.address;
+    public get endereco(){
+        return this.prop.endereco;
     }
 
-    public get contact(){
-        return this.prop.contact;
+    public get contacto(){
+        return this.prop.contacto;
     }
 
     public get tenant_key(){

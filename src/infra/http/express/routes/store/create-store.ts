@@ -1,8 +1,6 @@
 import { Request, Response } from "express";
-import { CreateStoreInputDTO, CreateStoreOutputDTO, CreateStoreUsecase } from "../../../../../use-case/store/create/create-store.usecase";
+import { CreateStoreInputDTO, CreateStoreUsecase } from "../../../../../use-case/store/create/create-store.usecase";
 import { HttpMethod, Route } from "../route";
-import { StoreRepository } from "../../../../repositories/store/store.repository";
-import { Store } from "../../../../../domain/store/entity/store";
 
 export type CreateStoreResponseDTO = {
     id: string;

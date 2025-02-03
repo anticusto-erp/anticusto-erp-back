@@ -3,7 +3,7 @@ import { StoreGateway } from "../../../domain/store/gateway/store.gateway";
 import { PoolConnection } from "../../database/Database.connection";
 
 
-export class StoreRepository{
+export class StoreRepository implements StoreGateway{
 
     private pool;
 
@@ -16,7 +16,22 @@ export class StoreRepository{
     }
 
     async save(store: Store): Promise<void> {
-        await this.pool.execute("insert into loja (id, nome, endereco, contacto, tenant_key) values (?,?,?,?,?)", [store.id, store.name_store, store.address, store.contact ,store.tenant_key]);
+        await this.pool.execute("insert into loja (id, nome, endereco, contacto, tenant_key) values (?,?,?,?,?)", [store.id, store.nome, store.endereco, store.contacto ,store.tenant_key]);
+    }
+
+    async list(): Promise<Store[]>{
+
+        const rows = await this.pool.execute("select * from loja");
+
+        // const rs = rows.map((p) => {
+        //     return p[0]
+        // })
+
+        // console.log("roes", rs)
+
+        return rows;
+
+
     }
 
     // async findBiId(id: string): Promise<Store | null> {
