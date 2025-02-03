@@ -6,6 +6,8 @@ import { CreateStoreUsecase } from "./use-case/store/create/create-store.usecase
 import * as dotenv from "dotenv";
 import { ListStoreUsecase } from "./use-case/store/list/list-store.usecase";
 import { ListStoreRoute } from "./infra/http/express/routes/store/list-store";
+import { DeleteStoreUsecase } from "./use-case/store/delete/delete-store.usecase";
+import { DeleteStoreRoute } from "./infra/http/express/routes/store/delete-store";
 
 
 function main(){
@@ -15,12 +17,15 @@ function main(){
     
     const createStoreUsecase = CreateStoreUsecase.create(aStoreRepository);
     const listStoreUsecase = ListStoreUsecase.create(aStoreRepository);
+    const deleteStoreUsecase = DeleteStoreUsecase.create(aStoreRepository);
     
     const createRouteStore = CreateStoreRoute.create(createStoreUsecase);
     const listRouteStore = ListStoreRoute.create(listStoreUsecase);
+    const deleteRouteStore = DeleteStoreRoute.create(deleteStoreUsecase);
+   
     
     const port = 8000;
-    const api = ApiExpress.create([createRouteStore, listRouteStore]);
+    const api = ApiExpress.create([createRouteStore, listRouteStore, deleteRouteStore]);
     api.start(port);
 
 }
