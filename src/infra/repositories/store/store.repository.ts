@@ -21,7 +21,7 @@ export class StoreRepository implements StoreGateway{
 
     async list(): Promise<Store[]>{
 
-        const rows = await this.pool.execute("select * from loja");
+        const [rows] = await this.pool.execute("select * from loja");
 
         // const rs = rows.map((p) => {
         //     return p[0]
@@ -29,7 +29,7 @@ export class StoreRepository implements StoreGateway{
 
         // console.log("roes", rs)
 
-        return rows;
+        return rows as Store[];
 
 
     }

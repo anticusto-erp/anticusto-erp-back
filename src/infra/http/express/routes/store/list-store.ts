@@ -3,14 +3,14 @@ import { ListStoreOutputDTO, ListStoreUsecase } from "../../../../../use-case/st
 import { HttpMethod, Route } from "../route";
 
 export type ListStoreRouteResponseDTO = {
-    // loja: {
+    loja: {
         id: string;
         nome: string;
         endereco: string;
         contacto: string;
         tenant_key: string;
     }[]
-// }
+}
 
 
 export class ListStoreRoute implements Route {
@@ -32,7 +32,7 @@ export class ListStoreRoute implements Route {
                 const output = await this.listStoreService.execute();
                 const responseBody = this.present(output);
     
-                console.log(output)
+                console.log(responseBody)
                 
                 response.status(200).json(responseBody).send();
                 
@@ -44,17 +44,7 @@ export class ListStoreRoute implements Route {
     }
 
     private present(input: ListStoreOutputDTO): ListStoreRouteResponseDTO{
-
-        const response = input.loja.map((store) => ({
-                id: store.id,
-                nome: store.nome,
-                endereco: store.endereco,
-                contacto: store.contacto,
-                tenant_key: store.tenant_key,
-            }))
-        
-
-        return response;
+        return input
     }
 
     public getMethod(): string {

@@ -22,11 +22,9 @@ export class ListStoreUsecase implements Usecase<ListStoreInputDTO, ListStoreOut
         return new ListStoreUsecase(storegateway);
     }
 
-    public async execute(): Promise<ListStoreOutputDTO> {
+    public async execute(): Promise<any> {
         const aStore = await this.storegateway.list();
         const output = this.present(aStore);
-
-        console.log("Usecase", output);
         
         return output;
     
@@ -34,29 +32,18 @@ export class ListStoreUsecase implements Usecase<ListStoreInputDTO, ListStoreOut
 
     private present(input: Store[]){
 
-        return {
-            loja: input.map((p) => {
-                return {
-                    id: p.id,
-                    nome: p.nome,
-                    endereco: p.endereco,
-                    contacto: p.contacto,
-                    tenant_key: p.tenant_key
+        return input.map((input)=> {
+            return {
+                id: input.id,
+                nome: input.nome,
+                endereco: input.endereco,
+                contacto: input.contacto,
+                tenant_key: input.tenant_key,
+            }
+        })
 
-                }
-            })
 
-            // loja: loja.map((loja) => {
-            //     return {
-            //         id: loja.id,
-            //         nome: loja.nome,
-            //         endereco: loja.endereco,
-            //         contacto: loja.contacto,
-            //         tenant_key: loja.tenant_key,
-            //     }
-            // })
 
-        }
         
     }
 
