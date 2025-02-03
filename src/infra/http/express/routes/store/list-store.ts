@@ -32,8 +32,6 @@ export class ListStoreRoute implements Route {
                 const output = await this.listStoreService.execute();
                 const responseBody = this.present(output);
     
-                console.log(responseBody)
-                
                 response.status(200).json(responseBody).send();
                 
             } catch (error) {
