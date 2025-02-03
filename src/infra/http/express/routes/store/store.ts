@@ -33,15 +33,8 @@ export class CreateStoreRoute implements Route {
                 address,
                 contact,
             }
-
-            const store = this.createstoreService.execute(input);
-            const resp = this.present(store);
-                // const aStoreRepository = StoreRepository.create();
-                // aStoreRepository.save(input)
-
-            // const output: CreateStoreResponseDTO = this.present(input)
-
-            response.status(201).json(resp).send();
+            this.createstoreService.execute(input);
+            response.status(201).json().send();
 
         }
     }
@@ -53,12 +46,6 @@ export class CreateStoreRoute implements Route {
 
     public getPath(): string {
         return this.path;
-    }
-
-
-    private present(input: CreateStoreOutputDTO): CreateStoreOutputDTO{
-        const response = {id: input.id};
-        return response;
     }
 
 } 
