@@ -6,13 +6,14 @@ import { CreateStoreUsecase } from "./use-case/store/create/create-store.usecase
 function main(){
 
     const aStoreRepository = StoreRepository.create();
-
+    
     const createStoreUsecase = CreateStoreUsecase.create(aStoreRepository);
-
-    const createRouteStoreUsecase = CreateStoreRoute.create(createStoreUsecase);
+    // aStoreRepository.save()
+    
+    const createRouteStore = CreateStoreRoute.create(createStoreUsecase);
     
     const port = 8000;
-    const api = ApiExpress.create([createRouteStoreUsecase]);
+    const api = ApiExpress.create([createRouteStore]);
     api.start(port);
 
 }

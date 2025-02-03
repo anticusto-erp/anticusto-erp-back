@@ -20,7 +20,7 @@ export class CreateStoreUsecase implements Usecase<CreateStoreInputDTO, CreateSt
         return new CreateStoreUsecase(storegateway);
     }
 
-    public async exceute({name_store, address, contact}: CreateStoreInputDTO): Promise<CreateStoreOutputDTO> {
+    public async execute({name_store, address, contact}: CreateStoreInputDTO): Promise<CreateStoreOutputDTO> {
         const aStore = Store.create(name_store, address, contact);
         await this.storegateway.save(aStore);
 
@@ -30,7 +30,8 @@ export class CreateStoreUsecase implements Usecase<CreateStoreInputDTO, CreateSt
     }
 
     public present(store: Store): CreateStoreOutputDTO{
-        const output: CreateStoreOutputDTO = {
+        // const output: CreateStoreOutputDTO = {
+            const output: any = {
             id: store.id
         }
 

@@ -1,6 +1,8 @@
 import { Request, Response } from "express";
-import { CreateStoreInputDTO, CreateStoreUsecase } from "../../../../../use-case/store/create/create-store.usecase";
+import { CreateStoreInputDTO, CreateStoreOutputDTO, CreateStoreUsecase } from "../../../../../use-case/store/create/create-store.usecase";
 import { HttpMethod, Route } from "../route";
+import { StoreRepository } from "../../../../repositories/store/store.repository";
+import { Store } from "../../../../../domain/store/entity/store";
 
 export type CreateStoreResponseDTO = {
     id: string;
@@ -8,7 +10,11 @@ export type CreateStoreResponseDTO = {
 
 export class CreateStoreRoute implements Route {
 
-    private constructor(private readonly path: string, private readonly method: string, createstoreService: CreateStoreUsecase){}
+    private createstoreService: CreateStoreUsecase;
+
+    private constructor(private readonly path: string, private readonly method: string, createstoreService: CreateStoreUsecase){
+        this.createstoreService = createstoreService;
+    }
 
     public static create(createstoreService: CreateStoreUsecase){
         return new CreateStoreRoute(
@@ -25,12 +31,17 @@ export class CreateStoreRoute implements Route {
             const input: CreateStoreInputDTO = {
                 name_store,
                 address,
-                contact
+                contact,
             }
 
-            // const output: CreateStoreResponseDTO = await this.createstoreService
+            const store = this.createstoreService.execute(input);
+            const resp = this.present(store);
+                // const aStoreRepository = StoreRepository.create();
+                // aStoreRepository.save(input)
 
-            response.status(201).json().send();
+            // const output: CreateStoreResponseDTO = this.present(input)
+
+            response.status(201).json(resp).send();
 
         }
     }
@@ -45,7 +56,7 @@ export class CreateStoreRoute implements Route {
     }
 
 
-    private present(input: CreateStoreResponseDTO): CreateStoreResponseDTO{
+    private present(input: CreateStoreOutputDTO): CreateStoreOutputDTO{
         const response = {id: input.id};
         return response;
     }

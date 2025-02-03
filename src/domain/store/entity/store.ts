@@ -1,9 +1,9 @@
 export type StoreProps = {
-    id: string;
+    id?: string | undefined;
     name_store: string;
     address: string;
     contact: string;
-    tenant_key: string;
+    tenant_key?: string | undefined;
 }
 
 export class Store {

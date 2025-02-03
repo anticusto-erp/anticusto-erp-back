@@ -1,3 +1,3 @@
 export interface Usecase<inputDTO, OutputDTO>{
-    exceute(input: inputDTO): Promise<OutputDTO>;
+    execute(input: inputDTO): Promise<OutputDTO>;
 }
