@@ -31,8 +31,21 @@ export class CreateStoreRoute implements Route {
                 address,
                 contact,
             }
-            this.createstoreService.execute(input);
-            response.status(201).json().send();
+            try {
+                
+                const isvalidate: Array<keyof CreateStoreInputDTO> = ["name_store", "address", "contact"];
+                for(const key of isvalidate){
+                    if(input[key] === undefined || input[key] === null || input[key] === "" || input[key] === " "){
+                        throw new Error(` ${key} can't be a undefined or null`);
+                    }
+                }
+
+                this.createstoreService.execute(input);
+                response.status(201).json().send();
+
+            } catch (error) {
+                response.status(201).json({data: error.message}).send();
+            }
 
         }
     }
