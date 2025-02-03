@@ -1,9 +1,9 @@
 export type StoreProps = {
-    id?: string;
+    id: string;
     nome: string;
     endereco: string;
     contacto: string;
-    tenant_key?: string;
+    tenant_key: string;
 }
 
 export class Store {
