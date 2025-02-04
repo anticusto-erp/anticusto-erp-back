@@ -35,4 +35,15 @@ export class StoreRepository implements StoreGateway{
         return affectedRows > 0
     }
 
+    async findOne(id: string): Promise<Store | null>{
+        const [rows] = await this.pool.execute("select * from loja where id = ?", [id]);
+
+        const store = rows[0];
+        return store ? Store.with(store) : null
+    }
+
+    async update(store: Store): Promise<void> {
+        await this.pool.execute("update loja set nome = ?, endereco = ?, contacto = ?, tenant_key = ? where id = ?", [store.nome, store.endereco, store.contacto, store.tenant_key, store.id]);
+    }
+
 }
