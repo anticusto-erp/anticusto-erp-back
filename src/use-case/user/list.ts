@@ -1,5 +1,3 @@
-import { AcessRole } from "../../domain/access-role/entity/acess-role";
-import { Employer } from "../../domain/employer/entity/employer";
 import { User } from "../../domain/user/entity/user";
 import { UserGateway } from "../../domain/user/gateway/user.gateway";
 import { Usecase } from "../use-case";
@@ -16,7 +14,6 @@ export type UserOutputDTO = {
         id_employer: string;
         id_access_role: string;
 
-        employer: Employer
     }
     
 }
