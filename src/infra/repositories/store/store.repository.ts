@@ -21,7 +21,7 @@ export class StoreRepository implements StoreGateway{
 
     async list(): Promise<Store[]>{
 
-        const [rows] = await this.pool.execute("select * from loja");
+        const [rows] = await this.pool.execute("select * from loja order by created_at");
 
         return rows as Store[];
 
