@@ -11,13 +11,13 @@ export class Store {
 
     private constructor(private prop: StoreProps){}
 
-    public static create(nome: string, endereco: string, contacto: string){
+    public static create(nome: string, endereco: string, contacto: string, tenant_key?: string, id?: string){
         return new Store({
-            id: crypto.randomUUID().toString(),
+            id: id ?? crypto.randomUUID().toString(),
             nome,
             endereco,
             contacto,
-            tenant_key: crypto.randomUUID().toString()
+            tenant_key: tenant_key ?? crypto.randomUUID().toString()
         });
     }
 
