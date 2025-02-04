@@ -53,8 +53,7 @@ export class LoginUsecase implements Usecase<LoginInputDTO, LoginOutputDTO> {
             
             const store = await this.userGateway.findStore(parseStoreId);
                         
-            // const id = employerId;
-            const id = "b47fec8d-9639-4f8c-859d-c2449cc1ac1e"
+            const id = employerId && JSON.parse(employerId);
             
             const user = await this.userGateway.findOneLogin(id);
             
