@@ -36,13 +36,13 @@ export class ListStoreRoute implements Route {
                 response.status(200).json(responseBody).send();
                 
             } catch (error) {
-                response.status(400).json({data: "Something went wrong we are fixing for you"}).send();
+                // response.status(400).json({data: "Something went wrong we are fixing for you"}).send();
                 
             }
         }
     }
 
-    private present(input: ListStoreOutputDTO): ListStoreRouteResponseDTO{
+    private  present(input: ListStoreOutputDTO): ListStoreRouteResponseDTO{
         return input
     }
 

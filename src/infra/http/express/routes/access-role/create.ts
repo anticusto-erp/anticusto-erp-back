@@ -30,16 +30,21 @@ export class CreateAccesRoleRoute implements Route{
 
             const {access_role} = request.body;
 
+            const input = {
+                access_role: access_role
+            }
+
             try {
 
-                if(access_role == undefined || access_role == null ){
-                    throw new Error(`${access_role} can't be undefined or null`);
+                if(input.access_role == undefined || input.access_role == null ){
+                    throw new Error(`${input.access_role} can't be undefined or null`);
                 }
 
-                await this.accessRoleService.execute(access_role);
+                await this.accessRoleService.execute(input);
+                response.status(201).send();
 
             } catch (error) {
-                throw new Error(error.message);
+                response.status(400).json({message: error.message}).send();
             }
 
         }

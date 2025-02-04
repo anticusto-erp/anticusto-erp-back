@@ -3,7 +3,7 @@ import { AcessRoleGateway } from "../../domain/access-role/gateway/acess-role.ga
 import { Usecase } from "../use-case";
 
 export type AccessRoleInputDTO = {
-    nivel_de_acesso: string;
+    access_role: string;
 }
 
 export type AccessRoleOutputDTO = void;
@@ -16,11 +16,13 @@ export class CreateAccessRoleUsecase implements Usecase<AccessRoleInputDTO, Acce
         return new CreateAccessRoleUsecase(accessRoleGateway);
     }
 
-    public async execute({nivel_de_acesso}: AccessRoleInputDTO): Promise<void> {
+    public async execute({access_role}: AccessRoleInputDTO): Promise<void> {
+
+        console.log("usecase", access_role);
         
         try {
 
-            const aAccessRole = AcessRole.create(nivel_de_acesso); 
+            const aAccessRole = AcessRole.create(access_role); 
             
             await this.accessRoleGateway.save(aAccessRole);
             
