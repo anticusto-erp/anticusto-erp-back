@@ -20,6 +20,12 @@ export class UserRepository implements UserGateway {
         await this.pool.execute("insert into usuario (id, id_funcionario, id_nivel_de_acesso, nome_de_usuario, senha) values (?,?,?,?,?)", [user.id, user.id_employer, user.id_access_role, user.username, user.password]);
     }
 
+    public async list(): Promise<User[]> {
+        const [rows] = await this.pool.execute("select * from usuario order by created_at");
+
+        return rows as User[];
+    }
+
     public async findOne(id: string): Promise<User | null> {
         const [rows] = await this.pool.execute("select * from usuario where id_funcionario = ?", [id]);
 
