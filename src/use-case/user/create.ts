@@ -12,8 +12,6 @@ export type UserInputDTO = {
     id_employer: string,
     id_access_role: string,
     
-    // acess_role: AcessRole | null,
-    // employer: Employer | null;
 }
 
 export type UserOutputDTO = void;
