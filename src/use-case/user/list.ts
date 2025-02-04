@@ -36,8 +36,8 @@ export class ListUserUsecase implements Usecase<UserInputDTO, UserOutputDTO>{
         return input.map((input) => {
             return {
                 id: input.id,
-                username: input.username,
-                id_employer: input.id_employer,
+                username: input.nome_de_usuario,
+                id_employer: input.id_funcionario,
                 id_access_role: input.id_nivel_de_acesso
             }
         })

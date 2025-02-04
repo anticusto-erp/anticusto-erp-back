@@ -8,17 +8,19 @@ export type UserProps = {
     username: string,
     password: string,
 
-    senha?: string,
-
+    
     id_employer: string,
     id_access_role: string,
-
-    id_loja?: string,
-
-    id_nivel_de_acesso?: string,
     
     acess_role: AcessRole | null,
     employer: Employer | null;
+    
+    
+    nome_de_usuario?: string,
+    senha?: string,
+    id_loja?: string,
+    id_funcionario?: string,
+    id_nivel_de_acesso?: string,
 }
 
 export class User {
@@ -81,5 +83,14 @@ export class User {
     public get id_nivel_de_acesso(){
         return this.props.id_nivel_de_acesso;
     }
+
+    public get id_funcionario(){
+        return this.props.id_funcionario;
+    }
+
+    public get nome_de_usuario(){
+        return this.props.nome_de_usuario;
+    }
+
 
 }
