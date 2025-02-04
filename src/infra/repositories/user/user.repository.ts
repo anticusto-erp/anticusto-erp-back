@@ -1,3 +1,4 @@
+import { AcessRole } from "../../../domain/access-role/entity/acess-role";
 import { Store } from "../../../domain/store/entity/store";
 import { User } from "../../../domain/user/entity/user";
 import { UserGateway } from "../../../domain/user/gateway/user.gateway";
@@ -41,6 +42,12 @@ export class UserRepository implements UserGateway {
         const [rows] = await this.pool.execute("select * from loja where id = ?", [id]);
 
         return rows.length > 0 ? rows[0] as Store : null;
+    }
+
+    public async findRole(id: string): Promise<AcessRole | null> {
+        const [rows] = await this.pool.execute("select * from nivel_de_acesso where id = ?", [id]);
+
+        return rows.length > 0 ? rows[0] as AcessRole : null;
     }
 
 }

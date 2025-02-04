@@ -6,6 +6,7 @@ import jwt from "jsonwebtoken";
 
 import { Usecase } from "../use-case"
 import bcypt from "bcrypt";
+import { AcessRole } from "../../domain/access-role/entity/acess-role";
 
 export type LoginInputDTO = {
     telephone: string,
@@ -17,6 +18,7 @@ export type LoginOutputDTO = {
         logindata: User | any,
         employer: Employer | any,
         store : Store | any
+        access : AcessRole | any
     },
     token: string;
 }
@@ -48,15 +50,20 @@ export class LoginUsecase implements Usecase<LoginInputDTO, LoginOutputDTO> {
             
             const parseStoreId = storeId && JSON.parse(storeId);
 
+            
             const store = await this.userGateway.findStore(parseStoreId);
-
-            console.log(parseStoreId);
-
+                        
             // const id = employerId;
             const id = "b47fec8d-9639-4f8c-859d-c2449cc1ac1e"
-
+            
             const user = await this.userGateway.findOneLogin(id);
             
+            const accessId = user && JSON.stringify(user?.id_nivel_de_acesso);
+
+            const parseAccesId = accessId && JSON.parse(accessId);
+
+            const access = await this.userGateway.findRole(parseAccesId);
+
             
             if(!user){
                 throw new Error("User not found");
@@ -79,7 +86,8 @@ export class LoginUsecase implements Usecase<LoginInputDTO, LoginOutputDTO> {
                 {
                     logindata,
                     employer,
-                    store
+                    store,
+                    access
                 },
                 token: token
             }

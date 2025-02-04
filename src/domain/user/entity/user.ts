@@ -14,6 +14,8 @@ export type UserProps = {
     id_access_role: string,
 
     id_loja?: string,
+
+    id_nivel_de_acesso?: string,
     
     acess_role: AcessRole | null,
     employer: Employer | null;
@@ -74,6 +76,10 @@ export class User {
 
     public get id_loja(){
         return this.props.id_loja;
+    }
+    
+    public get id_nivel_de_acesso(){
+        return this.props.id_nivel_de_acesso;
     }
 
 }
