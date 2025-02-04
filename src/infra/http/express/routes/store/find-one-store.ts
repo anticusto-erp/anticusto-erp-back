@@ -3,7 +3,14 @@ import { FindOneStoreUsecase } from "../../../../../use-case/store/find-one.usec
 import { HttpMethod, Route } from "../route";
 import { Store } from "../../../../../domain/store/entity/store";
 
-export type FindOneStoreResponseDTO = {}
+export type FindOneStoreResponseDTO = {
+    id: string,
+    nome: string,
+    endereco: string,
+    contacto: string,
+    tenant_key: string,
+    created_at?: Date
+}
 
 export class FindOneStoreRoute implements Route{
 
@@ -41,7 +48,9 @@ export class FindOneStoreRoute implements Route{
                     throw new Error("Store not found");
                 }
 
-                response.status(200).json(store).send();
+                const res = this.present(store);
+
+                response.status(200).json(res).send();
 
                 
             } catch (error) {
@@ -51,6 +60,19 @@ export class FindOneStoreRoute implements Route{
 
         }
         
+    }
+
+    private present(input: Store){
+        const store : FindOneStoreResponseDTO = {
+            id: input.id,
+            nome: input.nome,
+            contacto: input.contacto,
+            endereco: input.endereco,
+            tenant_key: input.tenant_key,
+            created_at: input.created_at
+        }
+
+        return store;
     }
 
 

@@ -4,6 +4,7 @@ export type StoreProps = {
     endereco: string;
     contacto: string;
     tenant_key: string;
+    created_at?: Date,
 }
 
 export class Store {
@@ -42,6 +43,10 @@ export class Store {
 
     public get tenant_key(){
         return this.prop.tenant_key;
+    }
+
+    public get created_at(){
+        return this.prop.created_at;
     }
 
 
