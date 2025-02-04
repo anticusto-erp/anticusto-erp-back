@@ -28,8 +28,11 @@ export class StoreRepository implements StoreGateway{
 
     }
 
-    async delete(id: string): Promise<void>{
-        await this.pool.execute(`delete from loja where id = ?`, [id]);
+    async delete(id: string): Promise<boolean>{
+        const [result] = await this.pool.execute(`delete from loja where id = ?`, [id]);
+
+        const affectedRows = (result as any).affectedRows;
+        return affectedRows > 0
     }
 
 }
