@@ -5,7 +5,6 @@ import { UserGateway } from "../../domain/user/gateway/user.gateway";
 import { Usecase } from "../use-case";
 
 export type UserInputDTO = {
-    id: string,
     username: string,
     password: string,
     email?: string,
@@ -27,7 +26,7 @@ export class CreateUserUsecase implements Usecase<UserInputDTO,UserOutputDTO>{
         return new CreateUserUsecase(userGateway, accessRoleGateway, employerGateway);
     }
 
-    public async execute({username, email, password, id_employer, id_access_role}: UserInputDTO): Promise<void> {
+    public async execute({username, password, id_employer, id_access_role}: UserInputDTO): Promise<void> {
 
         try {
 

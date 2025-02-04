@@ -19,6 +19,10 @@ import { EmployerRepository } from "./infra/repositories/employer/employer.repos
 import { CreateEmployerUsecase } from "./use-case/employer/create";
 import { CreateEmployerRoute } from "./infra/http/express/routes/employer/create";
 
+import { UserRepository } from "./infra/repositories/user/user.repository";
+import { CreateUserRoute } from "./infra/http/express/routes/user/create";
+import { CreateUserUsecase } from "./use-case/user/create";
+
 
 function main(){
     dotenv.config();
@@ -61,11 +65,21 @@ function main(){
     //employer controller
     const createEmployerRoute = CreateEmployerRoute.create(createEmployerusecase);
 
+    //user resfull
+    //user repository
+    const aUserRepository = UserRepository.create();
+
+    //user usecase
+    const createUserusecase = CreateUserUsecase.create(aUserRepository, aAccessRoleRepository, aEmployerRepository);
+    
+    //user controller
+    const createUserRoute = CreateUserRoute.create(createUserusecase);
+
     
     const port = 8000;
 
     //all routes
-    const api = ApiExpress.create([createRouteStore, listRouteStore, deleteRouteStore, findOneRouteStore, updateRouteStore, createAccesRoleRoute, createEmployerRoute]);
+    const api = ApiExpress.create([createRouteStore, listRouteStore, deleteRouteStore, findOneRouteStore, updateRouteStore, createAccesRoleRoute, createEmployerRoute, createUserRoute]);
     api.start(port);
 
 }
