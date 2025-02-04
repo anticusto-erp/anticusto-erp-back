@@ -19,8 +19,18 @@ export class CreateStoreUsecase implements Usecase<CreateStoreInputDTO, CreateSt
     }
 
     public async execute({name_store, address, contact}: CreateStoreInputDTO): Promise<CreateStoreOutputDTO> {
-        const aStore = Store.create(name_store, address, contact);
-        await this.storegateway.save(aStore);
+
+        try {            
+    
+            const aStore = Store.create(name_store, address, contact);
+    
+            await this.storegateway.save(aStore);
+        } catch (error) {
+
+            throw new Error(error.message);
+            
+        }
+
     }
 
 }
