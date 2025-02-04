@@ -18,7 +18,7 @@ export class DeleteStoreUsecase implements Usecase<string, void>{
 
     public async execute(id: string): Promise<void> {
         try {
-            await this.deleteGateway.delete(id);
+            // await this.deleteGateway.delete(id);
             return;
             
         } catch (error) {

@@ -33,10 +33,7 @@ export class DeleteStoreRoute implements Route {
                 if(aStore == undefined){
 
                     throw new Error("Store not found");
-                }
-
-                // console.log(aStore, id);
-                
+                }                
 
                 response.status(204).send()
 
