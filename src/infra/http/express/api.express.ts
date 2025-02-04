@@ -1,5 +1,6 @@
 import { IApi } from "../api";
 import express, { Express } from "express";
+import cors from "cors";
 import { Route } from "./routes/route";
 export class ApiExpress implements IApi {
 
@@ -7,6 +8,17 @@ export class ApiExpress implements IApi {
 
     private constructor(routes: Route[]){
         this.app = express();
+
+        //For developement use any url
+        this.app.use(cors());
+
+        //for production use the right url
+        // this.app.use(cors({
+        //     origin: "http://localhost:5173",
+        //     methods: ["GET", "POST", "DELETE", "PATCH"],
+        //     allowedHeaders: ["Content-Type", "Authorization"]
+        // }));
+
         this.app.use(express.json());
         this.addRoutes(routes);
     }
