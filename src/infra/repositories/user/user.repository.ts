@@ -19,7 +19,7 @@ export class UserRepository implements UserGateway {
     }
 
     public async findOne(id: string): Promise<User | null> {
-        const [rows] = await this.pool.execute("select * from usuario where id = ?", [id]);
+        const [rows] = await this.pool.execute("select * from usuario where id_funcionario = ?", [id]);
 
         return rows.length > 0 ? rows[0] as User : null;
     }

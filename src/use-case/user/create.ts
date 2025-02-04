@@ -29,9 +29,15 @@ export class CreateUserUsecase implements Usecase<UserInputDTO,UserOutputDTO>{
 
         try {
 
-            const aUser = await User.create(username, password, id_employer, id_access_role, this.accessGateway ,this.employerGateway);
 
-            console.log(aUser);
+            const aUser = await User.create(username, password, id_employer, id_access_role, this.accessGateway ,this.employerGateway);
+            
+            const userExist = await this.userGateway.findOne(aUser.id_employer);
+            if(userExist){
+                throw new Error("User already exist");
+            }
+            
+            await this.userGateway.save(aUser);
             
         } catch (error) {
             throw new Error(error.message);
