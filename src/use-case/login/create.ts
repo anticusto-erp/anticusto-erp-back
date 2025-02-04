@@ -37,6 +37,10 @@ export class LoginUsecase implements Usecase<LoginInputDTO, LoginOutputDTO> {
             }
             
             const employer = await this.userGateway.findTelephoneToLogin(telephone);
+
+            if(!employer){
+                throw new Error("User not found");
+            }
             
             const employerId = JSON.stringify(employer?.id);
 
