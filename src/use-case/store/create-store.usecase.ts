@@ -1,6 +1,6 @@
-import { Store } from "../../../domain/store/entity/store";
-import { StoreGateway } from "../../../domain/store/gateway/store.gateway";
-import { Usecase } from "../../use-case";
+import { Store } from "../../domain/store/entity/store";
+import { StoreGateway } from "../../domain/store/gateway/store.gateway";
+import { Usecase } from "../use-case";
 
 export type CreateStoreInputDTO = {
     name_store: string;

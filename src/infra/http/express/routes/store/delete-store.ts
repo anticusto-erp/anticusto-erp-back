@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { DeleteStoreUsecase } from "../../../../../use-case/store/delete/delete-store.usecase";
+import { DeleteStoreUsecase } from "../../../../../use-case/store/delete-store.usecase";
 import { HttpMethod, Route } from "../route";
 
 export type DeleteStoreResponseDTO = void;
@@ -28,7 +28,7 @@ export class DeleteStoreRoute implements Route {
                 
                 await this.deletestoreService.execute(id);            
                 response.status(204).send()
-                
+
             } catch (error) {
                 response.status(404).json({data: error.message}).send()
                 
