@@ -39,23 +39,29 @@ export class CreateEmployerRoute implements Route{
 
             const {firstName, lastName, telephone, email, bi, id_store} = request.body;
 
+            const input: EmployerInputDTO = {
+                firstName: firstName,
+                lastName: lastName,
+                bi: bi,
+                email: email,
+                telephone: telephone,
+                id_store: id_store
+            }
             try {
 
-                const input: EmployerInputDTO = {
-                    firstName,
-                    lastName,
-                    bi,
-                    email,
-                    telephone,
-                    id_store
+                const isValidate: Array<keyof EmployerInputDTO> = ["firstName", "lastName", "email", "bi", "telephone", "id_store"];
+                for(const key of isValidate){
+                    if(input[key] == undefined || input[key] == null || input[key] == ""){
+                        throw new Error(`${key} can't be empty, undefined or null`);
+                    }
                 }
 
-                console.log("Route", input);
+                await this.employerService.execute(input);
 
-                response.send();
+                response.status(201).send();
 
             } catch (error) {
-                response.status(404).json(error.message).send();
+                response.status(404).json({data: error.message}).send();
             }
 
         }

@@ -1,3 +1,69 @@
+// export type EmployerProps = {
+
+import { Store } from "../../store/entity/store";
+import { StoreGateway } from "../../store/gateway/store.gateway";
+
+//     id: string;
+//     id_store: string;
+//     firstName: string;
+//     lastName: string;
+//     email: string;
+//     telephone: string;
+//     bi: string;
+//     created_at?: Date;
+// }
+
+// export class Employer{
+
+//     public constructor(private props: EmployerProps){}
+
+//     public static create(firstName: string, lastName: string, telephone: string, email: string,bi: string, id_store: string, id?: string){
+//         return new Employer({
+//             id: id ?? crypto.randomUUID().toString(),
+//             firstName,
+//             lastName,
+//             telephone,
+//             email,
+//             id_store,
+//             bi,
+//         })
+//     }
+
+//     public with(prop: EmployerProps){
+//         return new Employer(prop);
+//     }
+
+//     public get id(){
+//         return this.props.id;
+//     }
+
+//     public get firstName(){
+//         return this.props.firstName;
+//     }
+
+//     public get lastName(){
+//         return this.props.lastName;
+//     }
+
+//     public get telephone(){
+//         return this.props.telephone;
+//     }
+
+//     public get email(){
+//         return this.props.email;
+//     }
+
+//     public get bi(){
+//         return this.props.bi;
+//     }
+
+//     public get id_store(){
+//         return this.props.id_store;
+//     }
+
+// }
+
+
 export type EmployerProps = {
 
     id: string;
@@ -7,6 +73,7 @@ export type EmployerProps = {
     email: string;
     telephone: string;
     bi: string;
+    store: Store,
     created_at?: Date;
 }
 
@@ -14,7 +81,13 @@ export class Employer{
 
     public constructor(private props: EmployerProps){}
 
-    public static create(firstName: string, lastName: string, telephone: string, email: string,bi: string, id_store: string, id?: string){
+    public static async create(firstName: string, lastName: string, telephone: string, email: string,bi: string, id_store: string, storeGateway: StoreGateway, id?: string){
+
+        const store = await storeGateway.findOne(id_store);
+        if(!store) {
+            throw new Error(`Store with id ${id_store} not found`);
+        }
+
         return new Employer({
             id: id ?? crypto.randomUUID().toString(),
             firstName,
@@ -23,6 +96,7 @@ export class Employer{
             email,
             id_store,
             bi,
+            store
         })
     }
 

@@ -56,7 +56,7 @@ function main(){
     const aEmployerRepository = EmployerRepository.create();
 
     //employer usecase
-    const createEmployerusecase = CreateEmployerUsecase.create(aEmployerRepository);
+    const createEmployerusecase = CreateEmployerUsecase.create(aEmployerRepository, aStoreRepository);
     
     //employer controller
     const createEmployerRoute = CreateEmployerRoute.create(createEmployerusecase);

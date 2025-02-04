@@ -16,7 +16,7 @@ export class EmployerRepository implements EmployerGateway {
 
     public async save(employer: Employer): Promise<void> {
 
-        await this.pool.execute("insert into funcionario (id, id_loja, primeiro_nome, ultimo_nome, email, telefone, bi", [employer.id, employer.id_store, employer.firstName, employer.lastName, employer.email, employer.telephone, employer.bi]);
+        await this.pool.execute("insert into funcionario (id, id_loja, primeiro_nome, ultimo_nome, email, telefone, bi) values (?,?,?,?,?,?,?)", [employer.id, employer.id_store, employer.firstName, employer.lastName, employer.email, employer.telephone, employer.bi]);
 
     }
 
