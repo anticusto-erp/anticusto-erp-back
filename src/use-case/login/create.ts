@@ -1,3 +1,5 @@
+import { AcessRole } from "../../domain/access-role/entity/acess-role";
+import { Employer } from "../../domain/employer/entity/employer";
 import { Login } from "../../domain/login/entity/login";
 import { User } from "../../domain/user/entity/user";
 import { UserGateway } from "../../domain/user/gateway/user.gateway";
@@ -10,6 +12,10 @@ export type LoginInputDTO = {
 }
 
 export type LoginOutputDTO = {
+    login:  {
+        logindata: User | any,
+        employer: Employer | any
+    },
     token: string;
 }
 
@@ -31,31 +37,32 @@ export class LoginUsecase implements Usecase<LoginInputDTO, LoginOutputDTO> {
             const employer = await this.userGateway.findTelephoneToLogin(telephone);
 
             const employerId = JSON.stringify(employer?.id);
-            const id = JSON.parse(employerId);
+            // const id = JSON.parse(employerId);
+            const id = "b47fec8d-9639-4f8c-859d-c2449cc1ac1e"
 
             const user = await this.userGateway.findOneLogin(id);
-
-            console.log("aaa", user, id)
-
+            
+            
             if(!user){
                 throw new Error("User not found");
             }
 
-
-            const newPassword = await bcypt.compare(password, user.password);
-
-
-            if(!newPassword) {
-                throw new Error("Incorrect password");
-            }
+            await this.isPasswordValide(password, user.senha);
 
             if(!user) {
                 throw new Error("User not found");
             }
 
-            const token: LoginOutputDTO = {token: "token ssas"}
+            const {senha: undefined, ...logindata} = user;
 
-            return token;
+            const data: LoginOutputDTO = {
+                login: {
+                    logindata,
+                    employer
+                },
+                token: "token ssas"
+            }
+            return data;
 
         } catch (error) {
             throw new Error(error.message);
@@ -65,6 +72,11 @@ export class LoginUsecase implements Usecase<LoginInputDTO, LoginOutputDTO> {
 
     private async isPasswordValide(uncummingPassword: string, currentPassword: any){
         const verifyPassword = await bcypt.compare(uncummingPassword, currentPassword);
+
+        if(!verifyPassword) {
+            throw new Error("Incorrect password");
+        }
+
         return verifyPassword;
     }
 

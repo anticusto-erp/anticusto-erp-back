@@ -8,6 +8,8 @@ export type UserProps = {
     username: string,
     password: string,
 
+    senha?: string,
+
     id_employer: string,
     id_access_role: string,
     
@@ -54,6 +56,10 @@ export class User {
 
     public get password(){
         return this.props.password;
+    }
+
+    public get senha(){
+        return this.props.senha;
     }
 
     public get id_employer(){
