@@ -1,3 +1,4 @@
+import { AcessRole } from "../../domain/access-role/entity/acess-role";
 import { User } from "../../domain/user/entity/user";
 import { UserGateway } from "../../domain/user/gateway/user.gateway";
 import { Usecase } from "../use-case";
