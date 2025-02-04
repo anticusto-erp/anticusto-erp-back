@@ -20,6 +20,12 @@ export class EmployerRepository implements EmployerGateway {
 
     }
 
+    public async findById(id: string): Promise<Employer | null> {
+        const [rows] = await this.pool.execute("select * from funcionario where id = ?", [id]);
+
+        return rows.length > 0 ? rows[0] as Employer : null;
+    }
+
     public async findByBi(bi: string): Promise<Employer | null> {
         const [rows] = await this.pool.execute("select * from funcionario where bi = ?", [bi]);
 
