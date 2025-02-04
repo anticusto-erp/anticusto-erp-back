@@ -24,4 +24,16 @@ export class UserRepository implements UserGateway {
         return rows.length > 0 ? rows[0] as User : null;
     }
 
+    public async findOneLogin(id: string): Promise<User | null> {
+        const [rows] = await this.pool.execute("select * from usuario where id_funcionario = ?", [id]);
+
+        return rows.length > 0 ? rows[0] as User : null;
+    }
+
+    public async findTelephoneToLogin(telephone: string): Promise<User | null> {
+        const [rows] = await this.pool.execute("select * from funcionario where telefone = ?", [telephone]);
+
+        return rows.length > 0 ? rows[0] as User : null;
+    }
+
 }
