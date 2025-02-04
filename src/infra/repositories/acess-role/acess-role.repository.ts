@@ -18,6 +18,18 @@ export class AccessRoleRepository implements AcessRoleGateway{
         await this.pool.execute("insert into nivel_de_acesso (id, nivel_de_acesso) values (?, ?)", [acessRole.id, acessRole.access_role]);
     }
 
+    public async list(): Promise<AcessRole[]> {
+        const [rows] = await this.pool.execute("select * from nivel_de_acesso");
+
+        return rows as AcessRole[];
+    }
+
+    public async findByName(nivel: string): Promise<AcessRole | null> {
+        const [rows] = await this.pool.execute("select * from nivel_de_acesso where nivel_de_acesso = ?", [nivel]);
+
+        return rows.length > 0 ? rows[0] as AcessRole : null;
+    }
+
     public async findById(id: string): Promise<AcessRole | null> {
         const [rows] = await this.pool.execute("select * from nivel_de_acesso where id = ?", [id]);
 

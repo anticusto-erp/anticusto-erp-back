@@ -20,12 +20,12 @@ export class CreateAccessRoleUsecase implements Usecase<AccessRoleInputDTO, Acce
 
         try {
 
-            const aAccessRole = AcessRole.create(access_role); 
+            const aAccessRole = await AcessRole.create(access_role, this.accessRoleGateway); 
             
             await this.accessRoleGateway.save(aAccessRole);
             
         } catch (error) {
-            throw new Error("Something went wrong, we are fixing for you");
+            throw new Error(error.message);
         }
 
     }

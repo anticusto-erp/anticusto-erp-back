@@ -1,28 +1,23 @@
 import { Request, Response } from "express";
 import { EmployerOutputDTO, ListEmployerUsecase } from "../../../../../use-case/employer/list";
 import { HttpMethod, Route } from "../route";
+import { ListAccesUsecase } from "../../../../../use-case/access-role/list";
 
-export type EmployerResponseDTO = {
-    employer: {
-        id_store: string;
-        firstName: string;
-        lastName: string;
-        email: string;
-        telephone: string;
-        bi: string;
-        created_at?: Date;
+export type AccessRoleOutputDTO = {
+    access_role: {
+        access_role: string;
     }[]
 }
 
-export class ListEmployerRoute implements Route {
+export class ListAccessRoute implements Route {
 
-    public constructor(private readonly path: string, private readonly method: HttpMethod, private readonly employerService: ListEmployerUsecase){}
+    public constructor(private readonly path: string, private readonly method: HttpMethod, private readonly accessService: ListAccesUsecase){}
 
-    public static create (employerService: ListEmployerUsecase){
-        return new ListEmployerRoute(
-            "/employer",
+    public static create (accessService: ListAccesUsecase){
+        return new ListAccessRoute(
+            "/access-role",
             HttpMethod.GET,
-            employerService
+            accessService
         )
     }
 
@@ -38,7 +33,7 @@ export class ListEmployerRoute implements Route {
 
             try {
 
-                const output = await this.employerService.execute();
+                const output = await this.accessService.execute();
                 const responseBody = this.present(output);
                 response.status(200).json(responseBody).send();
                 
@@ -49,7 +44,7 @@ export class ListEmployerRoute implements Route {
         }
     }
 
-    private present(input: EmployerOutputDTO): EmployerResponseDTO{
+    private present(input: AccessRoleOutputDTO): AccessRoleOutputDTO{
         return input
     }
 

@@ -28,6 +28,8 @@ import { ListUserUsecase } from "./use-case/user/list";
 import { ListUserRoute } from "./infra/http/express/routes/user/list";
 import { ListEmployerUsecase } from "./use-case/employer/list";
 import { ListEmployerRoute } from "./infra/http/express/routes/employer/list";
+import { ListAccessRoute } from "./infra/http/express/routes/access-role/list";
+import { ListAccesUsecase } from "./use-case/access-role/list";
 
 
 function main(){
@@ -56,9 +58,12 @@ function main(){
 
     //access-role usecase
     const createAccesRoleusecase = CreateAccessRoleUsecase.create(aAccessRoleRepository);
+    const listAccesRoleusecase = ListAccesUsecase.create(aAccessRoleRepository);
     
     //access-role controller
     const createAccesRoleRoute = CreateAccesRoleRoute.create(createAccesRoleusecase);
+    const listAccesRoleRoute = ListAccessRoute.create(listAccesRoleusecase);
+  
 
     
     //employer resfull
@@ -71,7 +76,7 @@ function main(){
     
     //employer controller
     const createEmployerRoute = CreateEmployerRoute.create(createEmployerusecase);
-    const istEmployerRoute = ListEmployerRoute.create(listEmployerusecase);
+    const listEmployerRoute = ListEmployerRoute.create(listEmployerusecase);
     
 
     //user resfull
@@ -95,7 +100,25 @@ function main(){
     const port = 8000;
 
     //all routes
-    const api = ApiExpress.create([createRouteStore, listRouteStore, deleteRouteStore, findOneRouteStore, updateRouteStore, createAccesRoleRoute, createEmployerRoute, istEmployerRoute, createUserRoute, listUserRoute, loginRoute]);
+    const api = ApiExpress.create([
+        createRouteStore,
+        listRouteStore,
+        deleteRouteStore,
+        findOneRouteStore,
+        updateRouteStore,
+        
+        createAccesRoleRoute,
+        listAccesRoleRoute,
+        
+        createEmployerRoute,
+        listEmployerRoute,
+        
+        createUserRoute,
+        listUserRoute,
+        
+        loginRoute
+    ]);
+    
     api.start(port);
 
 }
