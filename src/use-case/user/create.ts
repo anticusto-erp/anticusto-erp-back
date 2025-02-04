@@ -3,6 +3,7 @@ import { EmployerGateway } from "../../domain/employer/gateway/employer.gateway"
 import { User } from "../../domain/user/entity/user";
 import { UserGateway } from "../../domain/user/gateway/user.gateway";
 import { Usecase } from "../use-case";
+import bcrypt from "bcrypt";
 
 export type UserInputDTO = {
     username: string,
@@ -29,8 +30,9 @@ export class CreateUserUsecase implements Usecase<UserInputDTO,UserOutputDTO>{
 
         try {
 
+            const hasedPassword = await this.hashedPassword(password);
 
-            const aUser = await User.create(username, password, id_employer, id_access_role, this.accessGateway ,this.employerGateway);
+            const aUser = await User.create(username, hasedPassword, id_employer, id_access_role, this.accessGateway ,this.employerGateway);
             
             const userExist = await this.userGateway.findOne(aUser.id_employer);
             if(userExist){
@@ -44,5 +46,14 @@ export class CreateUserUsecase implements Usecase<UserInputDTO,UserOutputDTO>{
         }
 
     }
+
+
+    private async hashedPassword(password: string){
+        const salt = await bcrypt.genSalt(10);
+        const hasedPassword = await bcrypt.hash(password, salt);
+
+        return hasedPassword;
+    }
+
 
 }
