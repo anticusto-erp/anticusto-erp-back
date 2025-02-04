@@ -1,6 +1,7 @@
 import { AcessRole } from "../../domain/access-role/entity/acess-role";
 import { Employer } from "../../domain/employer/entity/employer";
 import { Login } from "../../domain/login/entity/login";
+import { Store } from "../../domain/store/entity/store";
 import { User } from "../../domain/user/entity/user";
 import { UserGateway } from "../../domain/user/gateway/user.gateway";
 import { Usecase } from "../use-case"
@@ -14,7 +15,8 @@ export type LoginInputDTO = {
 export type LoginOutputDTO = {
     login:  {
         logindata: User | any,
-        employer: Employer | any
+        employer: Employer | any,
+        store : Store | any
     },
     token: string;
 }
@@ -35,9 +37,18 @@ export class LoginUsecase implements Usecase<LoginInputDTO, LoginOutputDTO> {
             }
             
             const employer = await this.userGateway.findTelephoneToLogin(telephone);
-
+            
             const employerId = JSON.stringify(employer?.id);
-            // const id = JSON.parse(employerId);
+
+            const storeId = JSON.stringify(employer.id_loja);
+            
+            const parseStoreId = JSON.parse(storeId);
+
+            const store = await this.userGateway.findStore(parseStoreId);
+
+            console.log(parseStoreId);
+
+            // const id = employerId;
             const id = "b47fec8d-9639-4f8c-859d-c2449cc1ac1e"
 
             const user = await this.userGateway.findOneLogin(id);
@@ -56,9 +67,11 @@ export class LoginUsecase implements Usecase<LoginInputDTO, LoginOutputDTO> {
             const {senha: undefined, ...logindata} = user;
 
             const data: LoginOutputDTO = {
-                login: {
+                login: 
+                {
                     logindata,
-                    employer
+                    employer,
+                    store
                 },
                 token: "token ssas"
             }

@@ -1,3 +1,4 @@
+import { Store } from "../../../domain/store/entity/store";
 import { User } from "../../../domain/user/entity/user";
 import { UserGateway } from "../../../domain/user/gateway/user.gateway";
 import { PoolConnection } from "../../database/Database.connection";
@@ -34,6 +35,12 @@ export class UserRepository implements UserGateway {
         const [rows] = await this.pool.execute("select * from funcionario where telefone = ?", [telephone]);
 
         return rows.length > 0 ? rows[0] as User : null;
+    }
+
+    public async findStore(id: string): Promise<Store | null> {
+        const [rows] = await this.pool.execute("select * from loja where id = ?", [id]);
+
+        return rows.length > 0 ? rows[0] as Store : null;
     }
 
 }

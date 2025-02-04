@@ -12,6 +12,8 @@ export type UserProps = {
 
     id_employer: string,
     id_access_role: string,
+
+    id_loja?: string,
     
     acess_role: AcessRole | null,
     employer: Employer | null;
@@ -65,8 +67,13 @@ export class User {
     public get id_employer(){
         return this.props.id_employer;
     }
+    
     public get id_access_role(){
         return this.props.id_access_role;
+    }
+
+    public get id_loja(){
+        return this.props.id_loja;
     }
 
 }

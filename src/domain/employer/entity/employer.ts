@@ -12,6 +12,7 @@ export type EmployerProps = {
     bi: string;
     store: Store,
     created_at?: Date;
+    id_loja?: string;
 }
 
 export class Employer{
@@ -67,6 +68,10 @@ export class Employer{
 
     public get id_store(){
         return this.props.id_store;
+    }
+
+    public get id_loja(){
+        return this.props.id_loja;
     }
 
 }

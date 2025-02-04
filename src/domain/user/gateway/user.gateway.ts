@@ -1,3 +1,4 @@
+import { Store } from "../../store/entity/store";
 import { User } from "../entity/user";
 
 export interface UserGateway {
@@ -5,4 +6,5 @@ export interface UserGateway {
     findOne(id: string): Promise<User| null>;
     findOneLogin(id: string): Promise<User| null>;
     findTelephoneToLogin(telephone: string): Promise<User| null>;
+    findStore(id: string): Promise<Store | null>;
 }
