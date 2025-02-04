@@ -7,7 +7,6 @@ import { Usecase } from "../use-case";
 export type UserInputDTO = {
     username: string,
     password: string,
-    email?: string,
     
     id_employer: string,
     id_access_role: string,

@@ -7,8 +7,7 @@ export type UserProps = {
     id: string,
     username: string,
     password: string,
-    email?: string,
-    
+
     id_employer: string,
     id_access_role: string,
     
@@ -33,7 +32,6 @@ export class User {
             id: id ?? crypto.randomUUID().toString(),
             username,
             password,
-            email: employer?.email,
             employer: employer,
             acess_role: accessRole,
             id_access_role,
@@ -56,10 +54,6 @@ export class User {
 
     public get password(){
         return this.props.password;
-    }
-
-    public get email(){
-        return this.props.email;
     }
 
     public get id_employer(){
