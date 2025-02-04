@@ -11,6 +11,7 @@ export type ListStoreOutputDTO = {
         endereco: string;
         contacto: string;
         tenant_key: string;
+        created_at: Date
     }[]
 }
 
@@ -39,6 +40,7 @@ export class ListStoreUsecase implements Usecase<ListStoreInputDTO, ListStoreOut
                 endereco: input.endereco,
                 contacto: input.contacto,
                 tenant_key: input.tenant_key,
+                created_at: input.created_at
             }
         })
 

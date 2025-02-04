@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { ListStoreOutputDTO, ListStoreUsecase } from "../../../../../use-case/store/list/list-store.usecase";
+import { ListStoreOutputDTO, ListStoreUsecase } from "../../../../../use-case/store/list-store.usecase";
 import { HttpMethod, Route } from "../route";
 
 export type ListStoreRouteResponseDTO = {
@@ -9,6 +9,7 @@ export type ListStoreRouteResponseDTO = {
         endereco: string;
         contacto: string;
         tenant_key: string;
+        created_at: Date
     }[]
 }
 
