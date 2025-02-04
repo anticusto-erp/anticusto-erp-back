@@ -1,7 +1,5 @@
+import { AcessRole } from "../entity/acess-role";
+
 export interface AcessRoleGateway {
-    save(): Promise<void>;
-    list(): Promise<void>;
-    findOne(): Promise<void>;
-    update(): Promise<void>;
-    delete(): Promise<void>;
+    save(acessRole: AcessRole): Promise<void>;
 }
