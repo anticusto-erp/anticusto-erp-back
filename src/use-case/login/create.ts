@@ -1,9 +1,9 @@
-import { AcessRole } from "../../domain/access-role/entity/acess-role";
 import { Employer } from "../../domain/employer/entity/employer";
-import { Login } from "../../domain/login/entity/login";
 import { Store } from "../../domain/store/entity/store";
 import { User } from "../../domain/user/entity/user";
 import { UserGateway } from "../../domain/user/gateway/user.gateway";
+import jwt from "jsonwebtoken";
+
 import { Usecase } from "../use-case"
 import bcypt from "bcrypt";
 
@@ -66,6 +66,10 @@ export class LoginUsecase implements Usecase<LoginInputDTO, LoginOutputDTO> {
 
             const {senha: undefined, ...logindata} = user;
 
+            const keyToken = process.env.JWT;
+
+            const token = await this.generateToken(keyToken, logindata);
+
             const data: LoginOutputDTO = {
                 login: 
                 {
@@ -73,7 +77,7 @@ export class LoginUsecase implements Usecase<LoginInputDTO, LoginOutputDTO> {
                     employer,
                     store
                 },
-                token: "token ssas"
+                token: token
             }
             return data;
 
@@ -91,6 +95,13 @@ export class LoginUsecase implements Usecase<LoginInputDTO, LoginOutputDTO> {
         }
 
         return verifyPassword;
+    }
+
+    private async generateToken(key: any, data: any) {
+
+        const token = jwt.sign({data}, key, {expiresIn: '72h'})
+
+        return token;
     }
 
 }
