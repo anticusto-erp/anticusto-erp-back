@@ -15,12 +15,12 @@ export type EmployerInputDTO = {
 export type EmployerOutputDTO = void;
 
 
-export class EmployerUsecase implements Usecase<EmployerInputDTO, EmployerOutputDTO>{
+export class CreateEmployerUsecase implements Usecase<EmployerInputDTO, EmployerOutputDTO>{
 
     public constructor (private readonly employerGateway: EmployerGateway){}
 
     public static create (employerGateway: EmployerGateway){
-        return new EmployerUsecase(employerGateway);
+        return new CreateEmployerUsecase(employerGateway);
     }
 
     public async execute({firstName, lastName, email, telephone, id_store, bi}: EmployerInputDTO): Promise<void> {
