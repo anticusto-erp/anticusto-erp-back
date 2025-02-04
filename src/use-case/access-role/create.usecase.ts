@@ -18,8 +18,6 @@ export class CreateAccessRoleUsecase implements Usecase<AccessRoleInputDTO, Acce
 
     public async execute({access_role}: AccessRoleInputDTO): Promise<void> {
 
-        console.log("usecase", access_role);
-        
         try {
 
             const aAccessRole = AcessRole.create(access_role); 
