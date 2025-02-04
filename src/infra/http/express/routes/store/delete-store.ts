@@ -26,17 +26,9 @@ export class DeleteStoreRoute implements Route {
 
             try {
                 
-                const aStore = await this.deletestoreService.execute(id);
-
-                console.log(aStore, id);
-                
-                if(aStore == undefined){
-
-                    throw new Error("Store not found");
-                }                
-
+                await this.deletestoreService.execute(id);            
                 response.status(204).send()
-
+                
             } catch (error) {
                 response.status(404).json({data: error.message}).send()
                 
