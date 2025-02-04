@@ -25,7 +25,7 @@ export class User {
         const employer = await employerGateway.findById(id_employer);
 
         if(!accessRole && !employer){
-            throw new Error(`${accessRole} or ${employer} not found`);
+            throw new Error(`${!accessRole && "access_role"} and ${!employer && "employer"} not found`);
         }
 
         return new User({

@@ -52,12 +52,10 @@ export class CreateUserRoute implements Route {
                 }
 
                 await this.userService.execute(payload);
-
-
-
+                response.status(201).send();
                 
             } catch (error) {
-                response.status(404).json().send();
+                response.status(404).json({message: error.message}).send();
             }
 
         } 
