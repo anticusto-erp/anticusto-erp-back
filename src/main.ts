@@ -15,6 +15,9 @@ import { UpdateStoreRoute } from "./infra/http/express/routes/store/update-store
 import { AccessRoleRepository } from "./infra/repositories/acess-role/acess-role.repository";
 import { CreateAccessRoleUsecase } from "./use-case/access-role/create.usecase";
 import { CreateAccesRoleRoute } from "./infra/http/express/routes/access-role/create";
+import { EmployerRepository } from "./infra/repositories/employer/employer.repository";
+import { CreateEmployerUsecase } from "./use-case/employer/create";
+import { CreateEmployerRoute } from "./infra/http/express/routes/employer/create";
 
 
 function main(){
@@ -46,11 +49,23 @@ function main(){
     
     //access-role controller
     const createAccesRoleRoute = CreateAccesRoleRoute.create(createAccesRoleusecase);
+
+    
+    //employer resfull
+    //employer repository
+    const aEmployerRepository = EmployerRepository.create();
+
+    //employer usecase
+    const createEmployerusecase = CreateEmployerUsecase.create(aEmployerRepository);
+    
+    //employer controller
+    const createEmployerRoute = CreateEmployerRoute.create(createEmployerusecase);
+
     
     const port = 8000;
 
     //all routes
-    const api = ApiExpress.create([createRouteStore, listRouteStore, deleteRouteStore, findOneRouteStore, updateRouteStore, createAccesRoleRoute]);
+    const api = ApiExpress.create([createRouteStore, listRouteStore, deleteRouteStore, findOneRouteStore, updateRouteStore, createAccesRoleRoute, createEmployerRoute]);
     api.start(port);
 
 }
