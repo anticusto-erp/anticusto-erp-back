@@ -11,8 +11,12 @@ export type EmployerProps = {
     telephone: string;
     bi: string;
     store: Store,
-    created_at?: Date;
     id_loja?: string;
+    created_at?: Date;
+    
+    primeiro_nome?: string;
+    ultimo_nome?: string;
+    telefone?: string;
 }
 
 export class Employer{
@@ -72,6 +76,19 @@ export class Employer{
 
     public get id_loja(){
         return this.props.id_loja;
+    }
+
+    public get primeiro_nome(){
+        return this.props.primeiro_nome;
+    }
+    public get ultimo_nome(){
+        return this.props.ultimo_nome;
+    }
+    public get telefone(){
+        return this.props.telefone;
+    }
+    public get created_at(){
+        return this.props.created_at;
     }
 
 }

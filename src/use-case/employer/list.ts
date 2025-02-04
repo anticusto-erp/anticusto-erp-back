@@ -44,12 +44,12 @@ export class ListEmployerUsecase implements Usecase<EmployerInputDTO, EmployerOu
         return input.map((input) => {
             return {
                 id: input.id,
-                firstName: input.id,
-                lastName: input.id,
-                email: input.id,
-                telephone: input.id,
-                bi: input.id,
-                created_at: input.id,
+                firstName: input.primeiro_nome,
+                lastName: input.ultimo_nome,
+                email: input.email,
+                telephone: input.telefone,
+                bi: input.bi,
+                created_at: input.created_at,
 
             }
         })
