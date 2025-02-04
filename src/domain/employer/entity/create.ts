@@ -26,6 +26,10 @@ export class Employer{
         })
     }
 
+    public with(prop: EmployerProps){
+        return new Employer(prop);
+    }
+
     public get id(){
         return this.props.id;
     }
