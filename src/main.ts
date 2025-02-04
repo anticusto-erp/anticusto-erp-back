@@ -8,6 +8,8 @@ import { ListStoreUsecase } from "./use-case/store/list-store.usecase";
 import { ListStoreRoute } from "./infra/http/express/routes/store/list-store";
 import { DeleteStoreUsecase } from "./use-case/store/delete-store.usecase";
 import { DeleteStoreRoute } from "./infra/http/express/routes/store/delete-store";
+import { FindOneStoreUsecase } from "./use-case/store/find-one.usecase";
+import { FindOneStoreRoute } from "./infra/http/express/routes/store/find-one-store";
 
 
 function main(){
@@ -18,14 +20,16 @@ function main(){
     const createStoreUsecase = CreateStoreUsecase.create(aStoreRepository);
     const listStoreUsecase = ListStoreUsecase.create(aStoreRepository);
     const deleteStoreUsecase = DeleteStoreUsecase.create(aStoreRepository);
+    const findOneStoreUsecase = FindOneStoreUsecase.create(aStoreRepository);
     
     const createRouteStore = CreateStoreRoute.create(createStoreUsecase);
     const listRouteStore = ListStoreRoute.create(listStoreUsecase);
     const deleteRouteStore = DeleteStoreRoute.create(deleteStoreUsecase);
+    const findOneRouteStore = FindOneStoreRoute.create(findOneStoreUsecase);
    
     
     const port = 8000;
-    const api = ApiExpress.create([createRouteStore, listRouteStore, deleteRouteStore]);
+    const api = ApiExpress.create([createRouteStore, listRouteStore, deleteRouteStore, findOneRouteStore]);
     api.start(port);
 
 }
