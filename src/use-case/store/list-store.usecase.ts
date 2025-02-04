@@ -1,6 +1,6 @@
-import {Usecase} from "../../use-case";
-import {StoreGateway} from "../../../domain/store/gateway/store.gateway";
-import { Store } from "../../../domain/store/entity/store";
+import {Usecase} from "../use-case";
+import {StoreGateway} from "../../domain/store/gateway/store.gateway";
+import { Store } from "../../domain/store/entity/store";
 
 export type ListStoreInputDTO = void;
 
