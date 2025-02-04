@@ -1,4 +1,5 @@
 import { AcessRole } from "../../../domain/access-role/entity/acess-role";
+import { Employer } from "../../../domain/employer/entity/employer";
 import { Store } from "../../../domain/store/entity/store";
 import { User } from "../../../domain/user/entity/user";
 import { UserGateway } from "../../../domain/user/gateway/user.gateway";
@@ -51,6 +52,18 @@ export class UserRepository implements UserGateway {
     }
 
     public async findRole(id: string): Promise<AcessRole | null> {
+        const [rows] = await this.pool.execute("select * from nivel_de_acesso where id = ?", [id]);
+
+        return rows.length > 0 ? rows[0] as AcessRole : null;
+    }
+
+    public async findEmployer(id: string): Promise<Employer | null> {
+        const [rows] = await this.pool.execute("select * from funcionario where id = ?", [id]);
+
+        return rows.length > 0 ? rows[0] as Employer : null;
+    }
+
+    public async findAccessRole(id: string): Promise<AcessRole | null> {
         const [rows] = await this.pool.execute("select * from nivel_de_acesso where id = ?", [id]);
 
         return rows.length > 0 ? rows[0] as AcessRole : null;

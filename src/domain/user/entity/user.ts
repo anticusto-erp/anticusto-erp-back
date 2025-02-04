@@ -43,7 +43,7 @@ export class User {
             employer: employer,
             acess_role: accessRole,
             id_access_role,
-            id_employer
+            id_employer,
         })
 
     }
