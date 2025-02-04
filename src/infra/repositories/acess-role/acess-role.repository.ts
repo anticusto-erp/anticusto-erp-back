@@ -2,7 +2,7 @@ import { AcessRole } from "../../../domain/access-role/entity/acess-role";
 import { AcessRoleGateway } from "../../../domain/access-role/gateway/acess-role.gateway";
 import { PoolConnection } from "../../database/Database.connection";
 
-export class AcessRoleRepository implements AcessRoleGateway{
+export class AccessRoleRepository implements AcessRoleGateway{
 
     private pool;
 
@@ -11,7 +11,7 @@ export class AcessRoleRepository implements AcessRoleGateway{
     }
 
     public static create(){
-        return new AcessRoleRepository();
+        return new AccessRoleRepository();
     }
 
     public async save(acessRole: AcessRole): Promise<void> {

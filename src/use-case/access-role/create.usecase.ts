@@ -8,12 +8,12 @@ export type AccessRoleInputDTO = {
 
 export type AccessRoleOutputDTO = void;
 
-export class AccessRoleUsecase implements Usecase<AccessRoleInputDTO, AccessRoleOutputDTO>{
+export class CreateAccessRoleUsecase implements Usecase<AccessRoleInputDTO, AccessRoleOutputDTO>{
 
     public constructor(private readonly accessRoleGateway: AcessRoleGateway){}
 
     public static create(accessRoleGateway: AcessRoleGateway){
-        return new AccessRoleUsecase(accessRoleGateway);
+        return new CreateAccessRoleUsecase(accessRoleGateway);
     }
 
     public async execute({nivel_de_acesso}: AccessRoleInputDTO): Promise<void> {
