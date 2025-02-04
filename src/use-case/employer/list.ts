@@ -11,7 +11,7 @@ export type EmployerOutputDTO = {
         telephone: string;
         bi: string;
         created_at?: Date;
-    }
+    }[]
 }
 
 export type EmployerInputDTO = void;
