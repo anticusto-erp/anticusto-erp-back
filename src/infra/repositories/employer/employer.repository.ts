@@ -1,5 +1,6 @@
 import { Employer } from "../../../domain/employer/entity/employer";
 import { EmployerGateway } from "../../../domain/employer/gateway/employer.gateway";
+import { Store } from "../../../domain/store/entity/store";
 import {PoolConnection} from "../../database/Database.connection";
 
 export class EmployerRepository implements EmployerGateway {
@@ -50,6 +51,12 @@ export class EmployerRepository implements EmployerGateway {
         const [rows] = await this.pool.execute("select * from funcionario where telefone = ?", [telephone]);
 
         return rows.length > 0 ? rows[0] as Employer : null;
+    }
+
+    public async findStore(id: string): Promise<Store | null> {
+        const [rows] = await this.pool.execute("select * from loja where id = ?", [id]);
+
+        return rows.length > 0 ? rows[0] as Store : null;
     }
 
 

@@ -1,3 +1,4 @@
+import { Store } from "../../store/entity/store";
 import { Employer } from "../entity/employer";
 
 export interface EmployerGateway {
@@ -8,4 +9,5 @@ export interface EmployerGateway {
     findById(bi: string): Promise<Employer | null>
     findByEmail(email: String): Promise<Employer | null>
     findByTelephone(telephone: string): Promise<Employer | null>
+    findStore(id: string): Promise<Store | null>;
 }

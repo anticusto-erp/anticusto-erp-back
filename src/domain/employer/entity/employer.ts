@@ -17,6 +17,7 @@ export type EmployerProps = {
     primeiro_nome?: string;
     ultimo_nome?: string;
     telefone?: string;
+
 }
 
 export class Employer{

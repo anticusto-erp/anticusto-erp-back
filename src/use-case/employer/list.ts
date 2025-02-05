@@ -24,7 +24,7 @@ export class ListEmployerUsecase implements Usecase<EmployerInputDTO, EmployerOu
         return new ListEmployerUsecase(employerGateway);
     }
 
-    public async execute(input: void): Promise<any> {
+    public async execute(): Promise<any> {
 
         try {
 
@@ -40,8 +40,15 @@ export class ListEmployerUsecase implements Usecase<EmployerInputDTO, EmployerOu
 
     }
 
-    private present(input: Employer[]){
-        return input.map((input) => {
+    private present(input: Employer[]): Promise<any>{
+
+        const result = Promise.all(input.map( async (input) => {
+
+            const idStore = JSON.stringify(input.id_loja);
+            const parsedIdStore = idStore && JSON.parse(idStore);
+
+            const aStore = await this.employerGateway.findStore(parsedIdStore);
+
             return {
                 id: input.id,
                 firstName: input.primeiro_nome,
@@ -50,9 +57,12 @@ export class ListEmployerUsecase implements Usecase<EmployerInputDTO, EmployerOu
                 telephone: input.telefone,
                 bi: input.bi,
                 created_at: input.created_at,
+                store: aStore
 
             }
-        })
+        }));
+
+        return result;
     }
 
 }
