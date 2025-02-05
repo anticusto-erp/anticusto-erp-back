@@ -40,10 +40,17 @@ export class ListEmployerRoute implements Route {
 
                 const output = await this.employerService.execute();
                 const responseBody = this.present(output);
-                response.status(200).json(responseBody).send();
+
+                if(!response.headersSent) {
+                    response.status(200).json(responseBody).send();
+                }
+
                 
             } catch (error) {
-                response.status(404).json({message: error.message}).send();
+
+                if(!response.headersSent){
+                    response.status(404).json({message: error.message}).send();
+                }
             }
 
         }

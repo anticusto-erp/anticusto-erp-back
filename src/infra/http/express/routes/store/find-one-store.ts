@@ -50,12 +50,18 @@ export class FindOneStoreRoute implements Route{
 
                 const res = this.present(store);
 
-                response.status(200).json(res).send();
+                if(!response.headersSent){
+                    response.status(200).json(res).send();
+                }
+
 
                 
             } catch (error) {
+
+                if(!response.headersSent){
+                    response.status(404).json({data: error.message}).send();
+                }
                 
-                response.status(404).json({data: error.message}).send();
             }
 
         }

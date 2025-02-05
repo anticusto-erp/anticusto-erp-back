@@ -33,12 +33,18 @@ export class ListAccessRoute implements Route {
 
             try {
 
+                
                 const output = await this.accessService.execute();
                 const responseBody = this.present(output);
-                response.status(200).json(responseBody).send();
+
+                if(!response.headersSent){
+                    response.status(200).json(responseBody).send();
+                }
                 
             } catch (error) {
-                response.status(404).json({message: error.message}).send();
+                if(!response.headersSent){
+                    response.status(404).json({message: error.message}).send();
+                }
             }
 
         }
