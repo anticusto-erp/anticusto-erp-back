@@ -29,9 +29,6 @@ export class ListUserUsecase implements Usecase<UserInputDTO, UserOutputDTO>{
     public async execute(): Promise<any> {
         const aUser = await this.userGateway.list();
 
-        console.log(aUser);
-
-
         const output = this.present(aUser);
 
         return output;

@@ -45,10 +45,15 @@ export class ListUserRoute implements Route{
                 const output = await this.userService.execute();
                 const responseBody = this.present(output);
 
-                response.status(200).json(responseBody).send();
+                if(!response.headersSent) {
+                    response.status(200).json(responseBody).send();
+                }
                 
             } catch (error) {
-                response.status(404).json({message: error.message}).send();
+
+                if(!response.headersSent){
+                    response.status(404).json({message: error.message}).send();
+                }
             }
 
         }
