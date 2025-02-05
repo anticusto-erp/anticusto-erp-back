@@ -12,6 +12,7 @@ export class PoolConnection {
                 user: process.env.USER,
                 password: process.env.PASSWORD,
                 database: process.env.DATABASE,
+                port: process.env.PORT ? Number(process.env.PORT) : undefined,
                 waitForConnections: true
             }).promise();
         }
