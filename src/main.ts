@@ -97,7 +97,7 @@ function main(){
     const loginUsecase = LoginUsecase.create(aUserRepository);
     //user controller
     const loginRoute = LoginRoute.create(loginUsecase);
-    const port = process.env.PORT ? Number(process.env.PORT) : 8000;
+    const port = process.env.PORT ? Number(process.env.PORT) : 8001;
 
     //all routes
     const api = ApiExpress.create([
