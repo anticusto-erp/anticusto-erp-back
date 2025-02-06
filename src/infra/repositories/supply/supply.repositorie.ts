@@ -15,7 +15,7 @@ export class SupplyRepository implements SupplyGateway {
     }
 
     public async save(supply: Supply): Promise<void> {
-        await this.pool.execute("inserto into funcionario (id, nome, telefone, nif) values (?, ?, ?, ?)", [supply.id, supply.nome, supply.telefone, supply.nif]);
+        await this.pool.execute("insert into fornecedor (id, nome, telefone, nif) values (?, ?, ?, ?)", [supply.id, supply.nome, supply.telefone, supply.nif]);
     }
 
 

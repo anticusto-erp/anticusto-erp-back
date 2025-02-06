@@ -23,6 +23,8 @@ export class Supply {
             throw new Error ("Supply already exists");
         }
 
+        const currentData = new Date("1111-11-11");
+
         return new Supply({
             id: id ?? crypto.randomUUID().toString(),
             nome,

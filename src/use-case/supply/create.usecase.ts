@@ -20,9 +20,16 @@ export class CreateSupplyUsecase implements Usecase<SuppplyInputDTO, SuppplyOutp
 
     public async execute({nome, nif, telefone}: SuppplyInputDTO): Promise<void> {
 
-        const aSupply = await Supply.create(nome, telefone, nif, this.supplyGateway); 
+        try {
+            const aSupply = await Supply.create(nome, telefone, nif, this.supplyGateway); 
+    
+            await this.supplyGateway.save(aSupply);
+            return;
+        } catch (error: any) {
 
-        await this.supplyGateway.save(aSupply);
+            throw new Error(error.message);
+        }
+
 
     }
 
