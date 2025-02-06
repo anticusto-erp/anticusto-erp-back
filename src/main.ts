@@ -30,6 +30,7 @@ import { ListEmployerUsecase } from "./use-case/employer/list";
 import { ListEmployerRoute } from "./infra/http/express/routes/employer/list";
 import { ListAccessRoute } from "./infra/http/express/routes/access-role/list";
 import { ListAccesUsecase } from "./use-case/access-role/list";
+import { GetIp } from "./infra/http/express/routes/getIp/ip";
 
 
 function main(){
@@ -97,6 +98,10 @@ function main(){
     const loginUsecase = LoginUsecase.create(aUserRepository);
     //user controller
     const loginRoute = LoginRoute.create(loginUsecase);
+
+
+    const getIpRoute = GetIp.create();
+
     const port = process.env.PORT ? Number(process.env.PORT) : 8001;
 
     //all routes
@@ -116,7 +121,9 @@ function main(){
         createUserRoute,
         listUserRoute,
         
-        loginRoute
+        loginRoute,
+
+        getIpRoute
     ]);
     
     api.start(port);
