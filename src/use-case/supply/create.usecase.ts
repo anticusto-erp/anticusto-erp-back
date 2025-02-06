@@ -10,12 +10,12 @@ export type SuppplyInputDTO = {
 
 export type SuppplyOutputDTO = void;
 
-export class SupplyUsecase implements Usecase<SuppplyInputDTO, SuppplyOutputDTO>{
+export class CreateSupplyUsecase implements Usecase<SuppplyInputDTO, SuppplyOutputDTO>{
 
     public constructor(private readonly supplyGateway: SupplyGateway){}
 
     public static create(supplyGateway: SupplyGateway){
-        return new SupplyUsecase(supplyGateway);
+        return new CreateSupplyUsecase(supplyGateway);
     }
 
     public async execute({nome, nif, telefone}: SuppplyInputDTO): Promise<void> {
