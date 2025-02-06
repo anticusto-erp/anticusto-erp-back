@@ -1,7 +1,7 @@
-import mysql from "mysql2";
+import mysql, { Pool } from "mysql2";
 
 export class PoolConnection {
-    private static pool;
+    private static pool: any;
 
     private constructor(){}
 
