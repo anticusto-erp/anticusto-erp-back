@@ -92,7 +92,7 @@ export class LoginUsecase implements Usecase<LoginInputDTO, LoginOutputDTO> {
             }
             return data;
 
-        } catch (error) {
+        } catch (error: any) {
             throw new Error(error.message);
         }
     }

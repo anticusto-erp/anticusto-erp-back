@@ -41,7 +41,7 @@ export class ListAccessRoute implements Route {
                     response.status(200).json(responseBody).send();
                 }
                 
-            } catch (error) {
+            } catch (error: any) {
                 if(!response.headersSent){
                     response.status(404).json({message: error.message}).send();
                 }

@@ -46,7 +46,7 @@ export class ListEmployerRoute implements Route {
                 }
 
                 
-            } catch (error) {
+            } catch (error: any) {
 
                 if(!response.headersSent){
                     response.status(404).json({message: error.message}).send();

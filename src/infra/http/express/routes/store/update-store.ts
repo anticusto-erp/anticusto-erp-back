@@ -50,7 +50,7 @@ export class UpdateStoreRoute implements Route {
                 response.status(204).send();
 
 
-            } catch (error) {
+            } catch (error: any) {
                 throw new Error(error.message);
             }
 

@@ -34,7 +34,7 @@ export class ListEmployerUsecase implements Usecase<EmployerInputDTO, EmployerOu
             return output;
 
 
-        } catch (error) {
+        } catch (error: any) {
             throw new Error(error.message);
         }
 

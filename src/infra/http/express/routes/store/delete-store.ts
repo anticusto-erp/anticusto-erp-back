@@ -29,7 +29,7 @@ export class DeleteStoreRoute implements Route {
                 await this.deletestoreService.execute(id);            
                 response.status(204).send()
 
-            } catch (error) {
+            } catch (error: any) {
                 response.status(404).json({data: error.message}).send()
                 
             }

@@ -2,11 +2,13 @@ import { IApi } from "../api";
 import express, { Express } from "express";
 import cors from "cors";
 import { Route } from "./routes/route";
+
 export class ApiExpress implements IApi {
 
-    private app: Express;
+    private app: Express | any;
 
     private constructor(routes: Route[]){
+        this.app = {}
         this.app = express();
 
         //For developement use any url

@@ -25,7 +25,7 @@ export class CreateStoreUsecase implements Usecase<CreateStoreInputDTO, CreateSt
             const aStore = Store.create(name_store, address, contact);
     
             await this.storegateway.save(aStore);
-        } catch (error) {
+        } catch (error: any) {
 
             throw new Error(error.message);
             

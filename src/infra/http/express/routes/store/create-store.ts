@@ -45,7 +45,7 @@ export class CreateStoreRoute implements Route {
 
                 response.status(201).json().send();
 
-            } catch (error) {
+            } catch (error: any) {
                 response.status(201).json({message: error.message}).send();
             }
 

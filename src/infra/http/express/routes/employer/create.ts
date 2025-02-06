@@ -60,7 +60,7 @@ export class CreateEmployerRoute implements Route{
 
                 response.status(201).send();
 
-            } catch (error) {
+            } catch (error: any) {
                 response.status(404).json({data: error.message}).send();
             }
 

@@ -59,7 +59,7 @@ export class LoginRoute implements Route{
 
                 response.status(200).json(res).send();
                 
-            } catch (error) {
+            } catch (error: any) {
                 response.status(404).json({data: error.message}).send();
             }
 

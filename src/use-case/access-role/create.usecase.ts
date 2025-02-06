@@ -24,7 +24,7 @@ export class CreateAccessRoleUsecase implements Usecase<AccessRoleInputDTO, Acce
             
             await this.accessRoleGateway.save(aAccessRole);
             
-        } catch (error) {
+        } catch (error: any) {
             throw new Error(error.message);
         }
 

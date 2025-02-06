@@ -54,7 +54,7 @@ export class CreateUserRoute implements Route {
                 await this.userService.execute(payload);
                 response.status(201).send();
                 
-            } catch (error) {
+            } catch (error: any) {
                 response.status(404).json({message: error.message}).send();
             }
 

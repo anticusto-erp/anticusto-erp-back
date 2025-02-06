@@ -39,7 +39,7 @@ export class CreateUserUsecase implements Usecase<UserInputDTO,UserOutputDTO>{
             
             await this.userGateway.save(aUser);
             
-        } catch (error) {
+        } catch (error: any) {
             throw new Error(error.message);
         }
 

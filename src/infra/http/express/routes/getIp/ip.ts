@@ -4,7 +4,7 @@ import {HttpMethod, Route} from "../route";
 import http from "https";
 
 export class GetIp implements Route{
-    public constructor(private readonly path, private readonly method: HttpMethod){}
+    public constructor(private readonly path: string, private readonly method: HttpMethod){}
 
     public static create(){
         return new GetIp(
@@ -42,7 +42,7 @@ export class GetIp implements Route{
                     response.status(500).send('Erro ao obter o IP');
                   });
 
-            } catch (error) {
+            } catch (error: any) {
                 response.status(404).json({message: error.message}).send();
                 
             }

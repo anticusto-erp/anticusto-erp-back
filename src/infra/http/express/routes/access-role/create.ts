@@ -43,7 +43,7 @@ export class CreateAccesRoleRoute implements Route{
                 await this.accessRoleService.execute(input);
                 response.status(201).send();
 
-            } catch (error) {
+            } catch (error: any) {
                 response.status(400).json({message: error.message}).send();
             }
 

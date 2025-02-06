@@ -55,7 +55,7 @@ export class CreateEmployerUsecase implements Usecase<EmployerInputDTO, Employer
 
             await this.employerGateway.save(aEmployer);
 
-        } catch (error) {
+        } catch (error: any) {
             throw new Error(error.message);
         }
 

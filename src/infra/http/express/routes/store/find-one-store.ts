@@ -56,7 +56,7 @@ export class FindOneStoreRoute implements Route{
 
 
                 
-            } catch (error) {
+            } catch (error: any) {
 
                 if(!response.headersSent){
                     response.status(404).json({data: error.message}).send();
