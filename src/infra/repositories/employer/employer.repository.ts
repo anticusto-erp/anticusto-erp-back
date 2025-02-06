@@ -22,7 +22,7 @@ export class EmployerRepository implements EmployerGateway {
     }
 
     public async list(): Promise<Employer[]> {
-        const [rows] = await this.pool.execute("select * from funcionario");
+        const [rows] = await this.pool.execute("select * from funcionario order by created_at");
 
         return rows as Employer[];
     }
