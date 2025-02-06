@@ -2,7 +2,7 @@ import { SupplyGateway } from "../gateway/supply.gateway";
 
 export type SupplyProps = {
 
-    id_fornecedor: string;
+    id: string;
     nome: string;
     telefone: string;
     nif: string;
@@ -15,7 +15,7 @@ export class Supply {
 
     public constructor (private readonly props: SupplyProps){}
 
-    public static async create(id_fornecedor: string, nome: string, telefone: string, nif: string, supplyGateway: SupplyGateway){
+    public static async create(nome: string, telefone: string, nif: string, supplyGateway: SupplyGateway, id?: string){
 
         const aSupply = await supplyGateway.findNifSupply(nif);
 
@@ -24,7 +24,7 @@ export class Supply {
         }
 
         return new Supply({
-            id_fornecedor: id_fornecedor ?? crypto.randomUUID().toString(),
+            id: id ?? crypto.randomUUID().toString(),
             nome,
             nif,
             telefone
@@ -37,8 +37,8 @@ export class Supply {
     }
 
 
-    public get id_fornecedor(){
-        return this.props.id_fornecedor;
+    public get id(){
+        return this.props.id;
     }
 
     public get nome(){
