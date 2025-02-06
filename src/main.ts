@@ -31,6 +31,9 @@ import { ListEmployerRoute } from "./infra/http/express/routes/employer/list";
 import { ListAccessRoute } from "./infra/http/express/routes/access-role/list";
 import { ListAccesUsecase } from "./use-case/access-role/list";
 import { GetIp } from "./infra/http/express/routes/getIp/ip";
+import { SupplyRepository } from "./infra/repositories/supply/supply.repositorie";
+import { CreateSupplyUsecase } from "./use-case/supply/create.usecase";
+import { CreateSupplyRoute } from "./infra/http/express/routes/supply/create";
 
 
 function main(){
@@ -93,6 +96,17 @@ function main(){
     const listUserRoute = ListUserRoute.create(listUserusecase);
 
 
+    //supply resfull
+    //reulstado repository
+    const aSupplyRepository = SupplyRepository.create();
+
+    //supply usecase
+    const createSupplyUsecase= CreateSupplyUsecase.create(aSupplyRepository);
+    
+    //supply controller
+    const createSupply = CreateSupplyRoute.create(createSupplyUsecase);
+
+
     //login resr    
     //login usecase
     const loginUsecase = LoginUsecase.create(aUserRepository);
@@ -121,9 +135,10 @@ function main(){
         createUserRoute,
         listUserRoute,
         
-        loginRoute,
-
-        getIpRoute
+        createSupply,
+        
+        getIpRoute,
+        loginRoute
     ]);
     
     api.start(port);
