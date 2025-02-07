@@ -1,11 +1,11 @@
 import { ProductGateway } from "../gateway/product.gateway";
 
 export type ProductProps = {
-    id: string;
+    id?: string;
     name: string;
     preco: number;
     descricao: string;
-    created_at: string;
+    created_at?: string;
 }
 
 export class Product {

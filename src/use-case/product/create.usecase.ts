@@ -3,11 +3,11 @@ import { ProductGateway } from "../../domain/product/gateway/product.gateway";
 import { Usecase } from "../use-case";
 
 export type ProductInputDTO = {
-    id: string;
-    name: string;
+    id?: string;
+    nome: string;
     preco: number;
     descricao: string;
-    created_at: string;
+    created_at?: string;
 }
 
 export type ProductOutputDTO = void;
@@ -20,11 +20,11 @@ export class CreateProductUsecase implements Usecase<ProductInputDTO, ProductOut
         return new CreateProductUsecase(productGateway);
     }
 
-    public async execute({name, preco, descricao}: ProductInputDTO): Promise<void> {
+    public async execute({nome, preco, descricao}: ProductInputDTO): Promise<void> {
 
         try {
 
-            const aProduct = await Product.create(name, preco, descricao, this.productGateway);
+            const aProduct = await Product.create(nome, preco, descricao, this.productGateway);
 
             await this.productGateway.save(aProduct);
 

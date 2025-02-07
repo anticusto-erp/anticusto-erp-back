@@ -34,6 +34,9 @@ import { GetIp } from "./infra/http/express/routes/getIp/ip";
 import { SupplyRepository } from "./infra/repositories/supply/supply.repositorie";
 import { CreateSupplyUsecase } from "./use-case/supply/create.usecase";
 import { CreateSupplyRoute } from "./infra/http/express/routes/supply/create";
+import { ProductRepository } from "./infra/repositories/produc/product.repository";
+import { CreateProductUsecase } from "./use-case/product/create.usecase";
+import { CreateProductRoute } from "./infra/http/express/routes/product/create";
 
 
 function main(){
@@ -106,6 +109,16 @@ function main(){
     //supply controller
     const createSupply = CreateSupplyRoute.create(createSupplyUsecase);
 
+    //product resfull
+    //reulstado repository
+    const aProductRepository = ProductRepository.create();
+
+    //supply usecase
+    const createProductUsecase= CreateProductUsecase.create(aProductRepository);
+    
+    //supply controller
+    const createProductRoute = CreateProductRoute.create(createProductUsecase);
+
 
     //login resr    
     //login usecase
@@ -136,6 +149,8 @@ function main(){
         listUserRoute,
         
         createSupply,
+
+        createProductRoute,
         
         getIpRoute,
         loginRoute
