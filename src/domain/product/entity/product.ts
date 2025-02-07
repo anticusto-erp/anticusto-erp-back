@@ -13,7 +13,7 @@ export class Product {
     public constructor(private props: ProductProps){}
 
 
-    public static async create(name: string, preco: number, descricao: string, id: string, productGateway: ProductGateway){
+    public static async create(name: string, preco: number, descricao: string, productGateway: ProductGateway, id?: string){
 
         const productExists = await productGateway.findOne(id);
 
@@ -31,6 +31,29 @@ export class Product {
             created_at:  currentData
         })
     }
+
+    public with(props: ProductProps){
+        return new Product(props);
+    }
+
+    public get id(){
+        return this.props.id;
+    }
     
+    public get name(){
+        return this.props.name;
+    }
+
+    public get preco(){
+        return this.props.preco;
+    }
+
+    public get descricao(){
+        return this.props.descricao;
+    }
+
+    public get created_at(){
+        return this.props.created_at;
+    }
 
 }
