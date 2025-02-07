@@ -14,15 +14,16 @@ export class ProductRepository implements ProductGateway{
         return new ProductRepository();
     }
 
-    public async save(product: Product){
-        await this.pool.execute("insert into produto (id, nome, preco, descricao) values (?,?,?,?,?)", [product]);
+    async save(product: Product): Promise<void>{
+
+        await this.pool.execute("insert into produto (id, nome, preco, descricao, created_at) values (?,?,?,?,?)", [product.id, product.name, product.preco, product.descricao, product.created_at]);
     }
 
-    public async findOne(id: string): Promise<Product | null> {
+    async findOne(id: string): Promise<Product | null> {
 
-        const [rows] = await this.pool.execute("select * from produto order by created_at", [id]);
+        const [rows] = await this.pool.execute("select * from produto where id = ?", [id]);
 
-        return rows.length ? rows[0] as Product : null;
+        return rows.length > 0 ? rows[0] as Product : null;
     }
 
 }

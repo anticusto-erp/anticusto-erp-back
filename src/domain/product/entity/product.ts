@@ -17,6 +17,8 @@ export class Product {
 
         const productExists = await productGateway.findOne(id);
 
+        console.log(productExists);
+
         if(productExists){
             throw new Error("Product already exists");
         }

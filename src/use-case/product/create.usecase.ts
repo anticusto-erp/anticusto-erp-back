@@ -22,8 +22,10 @@ export class CreateProductUsecase implements Usecase<ProductInputDTO, ProductOut
 
     public async execute({nome, preco, descricao}: ProductInputDTO): Promise<void> {
 
+        
         try {
-
+            
+            
             const aProduct = await Product.create(nome, preco, descricao, this.productGateway);
 
             await this.productGateway.save(aProduct);
