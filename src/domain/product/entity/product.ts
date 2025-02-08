@@ -15,13 +15,13 @@ export class Product {
 
     public static async create(name: string, preco: number, descricao: string, productGateway: ProductGateway, id?: string){
 
-        const productExists = await productGateway.findOne(id);
+        // const productExists = await productGateway.findOne(id);
 
-        console.log(productExists);
+        // console.log(productExists);
 
-        if(productExists){
-            throw new Error("Product already exists");
-        }
+        // if(productExists){
+        //     throw new Error("Product already exists");
+        // }
 
         const currentData = new Date().toISOString().split('T')[0];
 
