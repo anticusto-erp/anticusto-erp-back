@@ -19,6 +19,12 @@ export class ProductRepository implements ProductGateway{
         await this.pool.execute("insert into produto (id, nome, preco, descricao, created_at) values (?,?,?,?,?)", [product.id, product.name, product.preco, product.descricao, product.created_at]);
     }
 
+    async list(): Promise<Product[]> {
+        const [rows] = await this.pool.execute("select * from product order by created_at");
+
+        return rows as Product[];
+    }
+
     async findOne(id: string): Promise<Product | null> {
 
         const [rows] = await this.pool.execute("select * from produto where id = ?", [id]);
