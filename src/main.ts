@@ -37,6 +37,8 @@ import { CreateSupplyRoute } from "./infra/http/express/routes/supply/create";
 import { ProductRepository } from "./infra/repositories/produc/product.repository";
 import { CreateProductUsecase } from "./use-case/product/create.usecase";
 import { CreateProductRoute } from "./infra/http/express/routes/product/create";
+import { ListProductUsecase } from "./use-case/product/list.usecase";
+import { ListProductRoute } from "./infra/http/express/routes/product/list";
 
 
 function main(){
@@ -115,9 +117,11 @@ function main(){
 
     //supply usecase
     const createProductUsecase= CreateProductUsecase.create(aProductRepository);
+    const listProductUsecase= ListProductUsecase.create(aProductRepository);
     
     //supply controller
     const createProductRoute = CreateProductRoute.create(createProductUsecase);
+    const listProductRoute = ListProductRoute.create(listProductUsecase);
 
 
     //login resr    
@@ -151,7 +155,8 @@ function main(){
         createSupply,
 
         createProductRoute,
-        
+        listProductRoute,
+
         getIpRoute,
         loginRoute
     ]);

@@ -20,7 +20,7 @@ export class ProductRepository implements ProductGateway{
     }
 
     async list(): Promise<Product[]> {
-        const [rows] = await this.pool.execute("select * from product order by created_at");
+        const [rows] = await this.pool.execute("select * from produto order by created_at");
 
         return rows as Product[];
     }
