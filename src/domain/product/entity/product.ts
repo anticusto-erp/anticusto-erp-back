@@ -2,7 +2,7 @@ import { ProductGateway } from "../gateway/product.gateway";
 
 export type ProductProps = {
     id?: string;
-    name: string;
+    nome: string;
     preco: number;
     descricao: string;
     created_at?: string;
@@ -13,7 +13,7 @@ export class Product {
     public constructor(private props: ProductProps){}
 
 
-    public static async create(name: string, preco: number, descricao: string, productGateway: ProductGateway, id?: string){
+    public static async create(nome: string, preco: number, descricao: string, productGateway: ProductGateway, id?: string){
 
         // const productExists = await productGateway.findOne(id);
 
@@ -27,7 +27,7 @@ export class Product {
 
         return new Product({
             id: id ?? crypto.randomUUID().toString(),
-            name,
+            nome,
             preco,
             descricao,
             created_at:  currentData
@@ -42,8 +42,8 @@ export class Product {
         return this.props.id;
     }
     
-    public get name(){
-        return this.props.name;
+    public get nome(){
+        return this.props.nome;
     }
 
     public get preco(){

@@ -16,7 +16,7 @@ export class ProductRepository implements ProductGateway{
 
     async save(product: Product): Promise<void>{
 
-        await this.pool.execute("insert into produto (id, nome, preco, descricao, created_at) values (?,?,?,?,?)", [product.id, product.name, product.preco, product.descricao, product.created_at]);
+        await this.pool.execute("insert into produto (id, nome, preco, descricao, created_at) values (?,?,?,?,?)", [product.id, product.nome, product.preco, product.descricao, product.created_at]);
     }
 
     async list(): Promise<Product[]> {

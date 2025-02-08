@@ -36,8 +36,13 @@ export class ListProductUsecase implements Usecase<ProductInputDTO, ProductOutpu
     private present(input: Product[]){
         
         const result = input.map((input) => {
+            
             return {
-                id: input.id
+                id: input.id,
+                nome: input.nome,
+                preco: +input.preco,
+                descricao: input.descricao,
+                created_at: input.created_at
             }
         })
 
