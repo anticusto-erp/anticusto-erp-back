@@ -51,6 +51,7 @@ export class CreateProductRoute implements Route {
                 }
 
                 await this.productService.execute(payload);
+                response.status(201).json().send()
 
                 
             } catch (error: any) {
