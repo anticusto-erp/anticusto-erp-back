@@ -18,6 +18,12 @@ export class SupplyRepository implements SupplyGateway {
         await this.pool.execute("insert into fornecedor (id, nome, telefone, nif) values (?, ?, ?, ?)", [supply.id, supply.nome, supply.telefone, supply.nif]);
     }
 
+    public async list(): Promise<Supply[]>{
+        const [rows] = await this.pool.execute("select * from fornecedor order by created_at");
+        
+        return rows as Supply[]
+    }
+
 
     public async findNifSupply(nif: string): Promise<Supply | null> {
 
