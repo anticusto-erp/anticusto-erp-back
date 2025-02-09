@@ -41,6 +41,9 @@ import { ListProductUsecase } from "./use-case/product/list.usecase";
 import { ListProductRoute } from "./infra/http/express/routes/product/list";
 import { ListSupplyRoute } from "./infra/http/express/routes/supply/list";
 import { ListSupplyUsecase } from "./use-case/supply/list.usecase";
+import { StockRepository } from "./infra/repositories/stock/stock.repository";
+import { CreateStockUsecase } from "./use-case/stock/create.usecase";
+import { CreateStockRoute } from "./infra/http/express/routes/stock/create";
 
 
 function main(){
@@ -127,6 +130,16 @@ function main(){
     const createProductRoute = CreateProductRoute.create(createProductUsecase);
     const listProductRoute = ListProductRoute.create(listProductUsecase);
 
+    //stock resfull
+    //reulstado repository
+    const aStockRepository = StockRepository.create();
+
+    //supply usecase
+    const createStockUsecase= CreateStockUsecase.create(aStockRepository, aProductRepository);
+    
+    //supply controller
+    const createStockRoute = CreateStockRoute.create(createStockUsecase);
+
 
     //login resr    
     //login usecase
@@ -161,6 +174,8 @@ function main(){
 
         createProductRoute,
         listProductRoute,
+
+        createStockRoute,
 
         getIpRoute,
         loginRoute
