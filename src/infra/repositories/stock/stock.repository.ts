@@ -9,7 +9,7 @@ export class StockRepository implements StockGateway {
         this.pool = PoolConnection.create();
     }
 
-    public create(){
+    public static create(){
         return new StockRepository();
     }
 
