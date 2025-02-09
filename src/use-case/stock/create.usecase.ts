@@ -23,9 +23,17 @@ export class CreateStockUsecase implements Usecase<StockInputDTO, StockOutputDTO
 
     public async execute({id_product, quantity}: StockInputDTO): Promise<void> {
 
-        const aStock = Stock.create(id_product, quantity, this.productGateway);
+        try {
+            const aStock = await Stock.create(id_product, quantity, this.productGateway);
+    
+            await this.stockGateway.save(aStock);
+            
+        } catch (error: any) {
 
-        await this.stockGateway.save(aStock);
+            throw new Error(error.message);
+            
+        }
+
 
     }
 

@@ -12,9 +12,9 @@ export class Stock {
 
     public constructor(private props: StockProps){}
 
-    public static create(id_produto: string, quantidade: number, productGateway: ProductGateway, updated_at?: string, id?: string){
+    public static async create(id_produto: string, quantidade: number, productGateway: ProductGateway, updated_at?: string, id?: string){
 
-        const existsProduct = productGateway.findOne(id_produto);
+        const existsProduct = await productGateway.findOne(id_produto);
 
         if(!existsProduct){
             throw new Error("Product doesn't exists.");
