@@ -14,6 +14,12 @@ export class Stock {
 
     public static create(id_produto: string, quantidade: number, productGateway: ProductGateway, updated_at?: string, id?: string){
 
+        const existsProduct = productGateway.findOne(id_produto);
+
+        if(!existsProduct){
+            throw new Error("Product doesn't exists.");
+        }
+
         const createdData = new Date().toISOString().split('T')[0];
         const updatedData = new Date().toISOString().split('T')[0];
 
