@@ -5,8 +5,8 @@ import { Usecase } from "../use-case";
 
 export type StockInputDTO = {
     id?: string;
-    id_produto: string;
-    quantidade: number;
+    id_product: string;
+    quantity: number;
     created_at?: string;
     updated_at?: string;
 }
@@ -21,9 +21,9 @@ export class CreateStockUsecase implements Usecase<StockInputDTO, StockOutputDTO
         return new CreateStockUsecase(stockGateway, productGateway);
     }
 
-    public async execute({id_produto, quantidade}: StockInputDTO): Promise<void> {
+    public async execute({id_product, quantity}: StockInputDTO): Promise<void> {
 
-        const aStock = await Stock.create(id_produto, quantidade, this.productGateway);
+        const aStock = Stock.create(id_product, quantity, this.productGateway);
 
         await this.stockGateway.save(aStock);
 

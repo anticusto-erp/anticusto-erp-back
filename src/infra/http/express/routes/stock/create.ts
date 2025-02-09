@@ -4,8 +4,8 @@ import { HttpMethod, Route } from "../route";
 
 export type StockInputDTO = {
     id?: string;
-    id_produto: string;
-    quantidade: number;
+    id_product: string;
+    quantity: number;
     created_at?: string;
     updated_at?: string;
 }
@@ -35,23 +35,23 @@ export class CreateStockRoute implements Route{
     public getHandler(){
         return async (request: Request, response: Response) => {
             
-            const {id_produto, quantidade} = request.body;
+            const {id_product, quantity} = request.body;
 
             try {
 
                 const payload: StockInputDTO = {
-                    id_produto,
-                    quantidade
+                    id_product,
+                    quantity
                 }
 
-                const isValidate: Array<keyof StockInputDTO> = ["id_produto", "quantidade"];
+                const isValidate: Array<keyof StockInputDTO> = ["id_product", "quantity"];
                 for(const key of isValidate){
-                    if(payload[key] === undefined || payload[key] === null || payload[key] === ""){
+                    if(payload[key] === undefined || payload[key] === null || payload[key] === "" || Number.isNaN(quantity)){
                         throw new Error(`${key} can't be empty, undefined or null`);
                     }
                 }
 
-                await this.stockService.execute({id_produto, quantidade});
+                await this.stockService.execute({id_product, quantity});
                 
             } catch (error: any) {
                 response.status(404).json({message: error.message}).send()

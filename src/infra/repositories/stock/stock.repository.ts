@@ -15,7 +15,7 @@ export class StockRepository implements StockGateway {
 
     public async save(stock: Stock): Promise<void> {
 
-        await this.pool.execute("insert into stock fornecedor (id, id_produto, quantidade, created_at, updated_at) values (?,?,?,?,?)", [stock.id,stock.id_produto, stock.quantidade, stock.created_at, stock.updated_at]);
+        await this.pool.execute("insert into estoque (id, id_produto, quantidade, created_at, updated_at) values (?,?,?,?,?)", [stock.id,stock.id_produto, stock.quantidade, stock.created_at, stock.updated_at]);
 
     }
 
