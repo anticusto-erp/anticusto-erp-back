@@ -52,6 +52,8 @@ export class CreateStockRoute implements Route{
                 }
 
                 await this.stockService.execute({id_product, quantity});
+
+                response.status(201).json().send()
                 
             } catch (error: any) {
                 response.status(404).json({message: error.message}).send()
