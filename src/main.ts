@@ -39,6 +39,8 @@ import { CreateProductUsecase } from "./use-case/product/create.usecase";
 import { CreateProductRoute } from "./infra/http/express/routes/product/create";
 import { ListProductUsecase } from "./use-case/product/list.usecase";
 import { ListProductRoute } from "./infra/http/express/routes/product/list";
+import { ListSupplyRoute } from "./infra/http/express/routes/supply/list";
+import { ListSupplyUsecase } from "./use-case/supply/list.usecase";
 
 
 function main(){
@@ -106,10 +108,12 @@ function main(){
     const aSupplyRepository = SupplyRepository.create();
 
     //supply usecase
-    const createSupplyUsecase= CreateSupplyUsecase.create(aSupplyRepository);
+    const createSupplyUsecase = CreateSupplyUsecase.create(aSupplyRepository);
+    const lisSupplyUsecase = ListSupplyUsecase.create(aSupplyRepository);
     
     //supply controller
-    const createSupply = CreateSupplyRoute.create(createSupplyUsecase);
+    const createSupplyRoute = CreateSupplyRoute.create(createSupplyUsecase);
+    const listSupplyRoute = ListSupplyRoute.create(lisSupplyUsecase);
 
     //product resfull
     //reulstado repository
@@ -152,7 +156,8 @@ function main(){
         createUserRoute,
         listUserRoute,
         
-        createSupply,
+        createSupplyRoute,
+        listSupplyRoute,
 
         createProductRoute,
         listProductRoute,
