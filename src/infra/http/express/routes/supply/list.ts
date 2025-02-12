@@ -39,10 +39,14 @@ export class ListSupplyRoute implements Route{
                 const aSupply = await this.supplyService.execute();
                 const result = this.present(aSupply);
 
-                response.status(200).json(result).send();
+                if(!response.headersSent){
+                    response.status(200).json(result).send();
+                }
 
             } catch (error: any) {
-                response.status(404).json(error.message).send();
+                if(!response.headersSent){
+                    response.status(404).json(error.message).send();
+                }
             }
         }         
     }

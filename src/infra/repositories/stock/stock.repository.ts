@@ -30,4 +30,9 @@ export class StockRepository implements StockGateway {
 
         return rows.length > 0 ? rows[0] as Stock : null;
     }
+
+    public async findOneProduct(id: string): Promise<Stock | null> {
+        const [rows] = await this.pool.execute("select * from estoque where id_produto = ?", [id]);
+        return rows.length > 0 ? rows[0] as Stock : null;
+    }
 }

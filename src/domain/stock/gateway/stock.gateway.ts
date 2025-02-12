@@ -5,4 +5,5 @@ export interface StockGateway {
     list(): Promise<Stock[]>;
     
     findOne(id: string): Promise<Stock | null>;
+    findOneProduct(id: string): Promise<Stock | null>;
 }

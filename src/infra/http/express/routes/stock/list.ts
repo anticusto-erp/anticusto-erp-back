@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 import { ListStockUsecase } from "../../../../../use-case/stock/list.usecase";
 import { HttpMethod, Route } from "../route";
-import { Stock } from "../../../../../domain/stock/entity/stock";
 
 export type StockResponseDTO = {
     estoque: {

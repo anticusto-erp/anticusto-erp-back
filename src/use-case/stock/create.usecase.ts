@@ -25,6 +25,12 @@ export class CreateStockUsecase implements Usecase<StockInputDTO, StockOutputDTO
 
         try {
             const aStock = await Stock.create(id_product, quantity, this.productGateway);
+
+            const alreadyRegister = await this.stockGateway.findOneProduct(id_product);
+
+            if(alreadyRegister){
+                throw new Error("Product already exist, try update the quantity");
+            }
     
             await this.stockGateway.save(aStock);
             

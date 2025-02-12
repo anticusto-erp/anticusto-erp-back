@@ -37,10 +37,15 @@ export class ListProductRoute implements Route {
                 const aProductResult = await this.productService.execute();
                 const responseBody = this.present(aProductResult);
 
-                response.status(200).json(responseBody).send()
+                if(!response.headersSent){
+                    response.status(200).json(responseBody).send()
+                }
+
 
             } catch (error: any) {
-                response.status(404).json({message: error.message}).send();
+                if(!response.headersSent){
+                    response.status(404).json({message: error.message}).send();
+                }
             }
         }
     }
