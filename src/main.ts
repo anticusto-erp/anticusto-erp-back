@@ -44,6 +44,8 @@ import { ListSupplyUsecase } from "./use-case/supply/list.usecase";
 import { StockRepository } from "./infra/repositories/stock/stock.repository";
 import { CreateStockUsecase } from "./use-case/stock/create.usecase";
 import { CreateStockRoute } from "./infra/http/express/routes/stock/create";
+import { ListStockUsecase } from "./use-case/stock/list.usecase";
+import { ListStockRoute } from "./infra/http/express/routes/stock/list";
 
 
 function main(){
@@ -136,9 +138,11 @@ function main(){
 
     //supply usecase
     const createStockUsecase= CreateStockUsecase.create(aStockRepository, aProductRepository);
+    const listStockUsecase= ListStockUsecase.create(aStockRepository, aProductRepository);
     
     //supply controller
     const createStockRoute = CreateStockRoute.create(createStockUsecase);
+    const listStockRoute = ListStockRoute.create(listStockUsecase);
 
 
     //login resr    
@@ -176,6 +180,7 @@ function main(){
         listProductRoute,
 
         createStockRoute,
+        listStockRoute,
 
         getIpRoute,
         loginRoute
