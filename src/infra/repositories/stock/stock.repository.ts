@@ -20,13 +20,13 @@ export class StockRepository implements StockGateway {
     }
 
     public async list(): Promise<Stock[]> {
-        const [rows] = await this.pool.execute("select * from fornecedor order by created_at");
+        const [rows] = await this.pool.execute("select * from estoque order by created_at");
 
         return rows as Stock[];
     }
 
     public async findOne(id: string): Promise<Stock | null> {
-        const [rows] = await this.pool.execute("select * from fornecedor where id = ?", [id]);
+        const [rows] = await this.pool.execute("select * from estoque where id = ?", [id]);
 
         return rows.length > 0 ? rows[0] as Stock : null;
     }
