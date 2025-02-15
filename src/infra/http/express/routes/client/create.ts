@@ -49,6 +49,8 @@ export class CreateClientRoute implements Route {
 
                 await this.clientService.execute(payload);
 
+                response.status(200).json().send();
+
             } catch (error: any) {
                 response.status(400).json({message: error?.message}).send();
             }
