@@ -1,4 +1,4 @@
-import { Client } from "../../../domain/client/entity/Client";
+import { Client } from "../../../domain/client/entity/client";
 import { ClientGateway } from "../../../domain/client/gateway/client.gataway";
 import { PoolConnection } from "../../database/Database.connection";
 
