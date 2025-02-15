@@ -1,4 +1,4 @@
-import { Client } from "../entity/Client";
+import { Client } from "../entity/client";
 
 export interface ClientGateway {
 
