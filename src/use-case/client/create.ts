@@ -10,12 +10,12 @@ export type ClientInputDTO = {
 
 export type ClientOutputDTO = void;
 
-export class ClientUsecase implements Usecase<ClientInputDTO, ClientOutputDTO> {
+export class CreateClientUsecase implements Usecase<ClientInputDTO, ClientOutputDTO> {
 
     public constructor(private clientGateway: ClientGateway){}
 
     public static create(clientGateway: ClientGateway){
-        return new ClientUsecase(clientGateway);
+        return new CreateClientUsecase(clientGateway);
     }
 
     public async execute({name, bi, telephone}: ClientInputDTO): Promise<void> {
