@@ -46,6 +46,11 @@ import { CreateStockUsecase } from "./use-case/stock/create.usecase";
 import { CreateStockRoute } from "./infra/http/express/routes/stock/create";
 import { ListStockUsecase } from "./use-case/stock/list.usecase";
 import { ListStockRoute } from "./infra/http/express/routes/stock/list";
+import { ClientRepository } from "./infra/repositories/client/Client.repository";
+import { ListClientUsecase } from "./use-case/client/list";
+import { CreateClientRoute } from "./infra/http/express/routes/client/create";
+import { ListClientRoute } from "./infra/http/express/routes/client/list";
+import { CreateClientUsecase } from "./use-case/client/create";
 
 
 function main(){
@@ -124,25 +129,38 @@ function main(){
     //reulstado repository
     const aProductRepository = ProductRepository.create();
 
-    //supply usecase
+    //product usecase
     const createProductUsecase= CreateProductUsecase.create(aProductRepository);
     const listProductUsecase= ListProductUsecase.create(aProductRepository);
     
-    //supply controller
+    //product controller
     const createProductRoute = CreateProductRoute.create(createProductUsecase);
     const listProductRoute = ListProductRoute.create(listProductUsecase);
 
     //stock resfull
-    //reulstado repository
+    //stock repository
     const aStockRepository = StockRepository.create();
 
-    //supply usecase
+    //stock usecase
     const createStockUsecase= CreateStockUsecase.create(aStockRepository, aProductRepository);
     const listStockUsecase= ListStockUsecase.create(aStockRepository, aProductRepository);
     
-    //supply controller
+    //stock controller
     const createStockRoute = CreateStockRoute.create(createStockUsecase);
     const listStockRoute = ListStockRoute.create(listStockUsecase);
+
+
+    //client resfull
+    //client repository
+    const aClienRepository = ClientRepository.create();
+
+    //client usecase
+    const createClientUsecase= CreateClientUsecase.create(aClienRepository);
+    const listClientUsecase= ListClientUsecase.create(aClienRepository);
+    
+    //client controller
+    const createClientRoute = CreateClientRoute.create(createClientUsecase);
+    const listClientRoute = ListClientRoute.create(listClientUsecase);
 
 
     //login resr    
@@ -181,6 +199,9 @@ function main(){
 
         createStockRoute,
         listStockRoute,
+
+        createClientRoute,
+        listClientRoute,
 
         getIpRoute,
         loginRoute
