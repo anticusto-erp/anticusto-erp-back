@@ -15,7 +15,7 @@ export class ClientRepository implements ClientGateway {
     }
 
     public async save(client: Client): Promise<void> {
-        await this.pool.execute("insert into cliente (nome, bi, telefone) values (?,?,?)", [client?.nome, client?.bi, client?.telefone]);
+        await this.pool.execute("insert into cliente (id, nome, bi, telefone) values (?,?,?)", [client?.id, client?.nome, client?.bi, client?.telefone]);
     }
 
     public async list(): Promise<Client[]> {

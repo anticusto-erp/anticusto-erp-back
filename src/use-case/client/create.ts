@@ -23,6 +23,7 @@ export class CreateClientUsecase implements Usecase<ClientInputDTO, ClientOutput
         try {
 
             const aCliente = await Client.create(name, bi, telephone, this.clientGateway);
+            // console.log(aCliente);
             await this.clientGateway.save(aCliente);
             
         } catch (error: any) {

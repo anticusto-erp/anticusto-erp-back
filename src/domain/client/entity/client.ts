@@ -11,7 +11,7 @@ export class Client {
 
     public constructor(private readonly props: clientProps){}
 
-    public static async create(nome: string, bi: string, telefone: string, clientGatewaygateway: ClientGateway ,id?: string){
+    public static async create(nome: string, bi: string, telefone: string, clientGatewaygateway: ClientGateway, id?: string){
 
         const clienteIsAlreadyRegister =  await clientGatewaygateway.findOneByBi(bi);
 
