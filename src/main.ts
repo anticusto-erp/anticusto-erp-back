@@ -173,7 +173,7 @@ function main(){
 
     //sale usecase
 
-    const createSaleUsecase= CreateSaleUsecase.create(aSaleRepository);
+    const createSaleUsecase= CreateSaleUsecase.create(aSaleRepository, aProductRepository, aClienRepository, aUserRepository);
     const listSaleUsecase= ListSaleUsecase.create(aSaleRepository);
     
     //sale controller

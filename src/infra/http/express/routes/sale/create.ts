@@ -3,11 +3,12 @@ import { CreateSaleUsecase } from "../../../../../use-case/sale/create";
 import { HttpMethod, Route } from "../route";
 import { Sale } from "../../../../../domain/sale/entity/Sale";
 
+
 export type saleInputDTO = {
-    client_id?: string;
-    product_id: string,
-    user_id: string;
-    quantity: number,
+    id_cliente?: string;
+    id_usuario: string;
+    id_produto: string,
+    quantidade: number
 }
 
 export class CreateSaleRoute implements Route{
@@ -36,21 +37,20 @@ export class CreateSaleRoute implements Route{
             try {
 
                 const payload: saleInputDTO ={
-                    product_id,
-                    user_id,
-                    quantity,
-                    client_id
+                    id_produto: product_id,
+                    id_usuario: user_id,
+                    quantidade: quantity,
+                    id_cliente: client_id
                 }
 
-                const isValidate: Array<keyof saleInputDTO> = ["product_id", "quantity", "user_id"];
+                const isValidate: Array<keyof saleInputDTO> = ["id_produto", "quantidade", "id_usuario"];
                 for(const key of isValidate){
-                    if(payload[key] === undefined || payload[key] == null || payload[key] == "".trim()){
+                    if(payload[key] === undefined || payload[key] == null || payload[key] == "".trim() || Number.isNaN(quantity)){
                         throw new Error(`${key} can't be empty, undefined or null`);
                     }
                 }
 
-                const aSale = Sale.create(user_id, product_id, quantity, client_id);
-                await this.saleService.execute(aSale);                
+                await this.saleService.execute(payload);                
 
             } catch (error: any) {
                 response.status(400).json({message: error.message}).send()
