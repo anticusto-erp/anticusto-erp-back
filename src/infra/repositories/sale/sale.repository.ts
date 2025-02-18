@@ -25,9 +25,9 @@ export class SaleRepository implements SaleGateway {
     }
 
     public async finOne(id: string): Promise<Sale | null> {
-        const [row] = await this.pool.execute("select * from venda where id = ?", [id]);
+        const [rows] = await this.pool.execute("select * from venda where id = ?", [id]);
 
-        return row.length > 0 ? row as Sale : null;
+        return rows.length > 0 ? rows[0] as Sale : null;
     }
 
 }
