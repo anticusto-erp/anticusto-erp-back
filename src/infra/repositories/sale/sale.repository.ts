@@ -19,7 +19,7 @@ export class SaleRepository implements SaleGateway {
     }
 
     public async list(): Promise<Sale[]> {
-        const [rows] = await this.pool.execute("select * form venda order by created_at");
+        const [rows] = await this.pool.execute("select * from venda order by created_at");
 
         return rows as Sale[]
     }

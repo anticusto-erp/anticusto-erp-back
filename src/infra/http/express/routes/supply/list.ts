@@ -42,10 +42,6 @@ export class ListSupplyRoute implements Route{
                 if(!response.headersSent){
                     response.status(200).json(result).send();
                 }
-<<<<<<< HEAD
-=======
-
->>>>>>> 9aae1a3262d1a7830e073fc7c816a91ec20c4b55
 
             } catch (error: any) {
                 if(!response.headersSent){

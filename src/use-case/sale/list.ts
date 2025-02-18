@@ -5,13 +5,13 @@ import { Usecase } from "../use-case";
 export type saleInputDTO = void;
 
 export type saleOutputDTO = {
-    sale: {
+    venda: {
         id: string,
         id_cliente?: string;
         id_usuario: string;
         quantidade: number,
         create_at: string
-    }[]
+    }
 }
 
 export class ListSaleUsecase implements Usecase<saleInputDTO, saleOutputDTO> {
