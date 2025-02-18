@@ -6,4 +6,6 @@ export interface StockGateway {
     
     findOne(id: string): Promise<Stock | null>;
     findOneProduct(id: string): Promise<Stock | null>;
+
+    reduceQuantityInStock(quantidade: number, id: string): Promise<void>;
 }

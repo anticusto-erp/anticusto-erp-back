@@ -58,6 +58,7 @@ import { ListSaleRoute } from "./infra/http/express/routes/sale/list";
 import { CreateSaleRoute } from "./infra/http/express/routes/sale/create";
 import { ListOneSaleUsecase } from "./use-case/sale/list-one";
 import { ListOneSaleRoute } from "./infra/http/express/routes/sale/list-one";
+import { PaymentRepository } from "./infra/repositories/payment/payment.repository";
 
 
 function main(){
@@ -172,10 +173,11 @@ function main(){
     //sale resfull
     //sale repository
     const aSaleRepository = SaleRepository.create();
+    const aPaymentRepository = PaymentRepository.create();
 
     //sale usecase
 
-    const createSaleUsecase= CreateSaleUsecase.create(aSaleRepository, aProductRepository, aClienRepository, aUserRepository);
+    const createSaleUsecase= CreateSaleUsecase.create(aSaleRepository, aProductRepository, aClienRepository, aUserRepository,aStockRepository, aPaymentRepository);
     const listSaleUsecase= ListSaleUsecase.create(aSaleRepository, aProductRepository, aClienRepository, aUserRepository);
     const listOneSaleUsecase= ListOneSaleUsecase.create(aSaleRepository, aProductRepository, aClienRepository, aUserRepository);
     

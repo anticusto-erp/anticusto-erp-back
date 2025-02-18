@@ -37,6 +37,7 @@ export class Stock {
         return new Stock(props);
     }
 
+
     public get id(){
         return this.props.id;
     }
@@ -47,6 +48,10 @@ export class Stock {
 
     public get quantidade(){
         return this.props.quantidade;
+    }
+
+    public set quantidade(quantidade: number){
+        this.quantidade = quantidade;
     }
 
     public get created_at(){

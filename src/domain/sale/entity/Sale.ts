@@ -15,26 +15,13 @@ export class Sale {
 
     public constructor(private readonly props: saleProps){}
 
-    public static async create(id_usuario: string, id_produto: string, quantidade: number, productGateway: ProductGateway, clientGateway: ClientGateway, userGateway: UserGateway, id_cliente?: string, id?: string){
+    public static async create(id_usuario: string, id_produto: string, quantidade: number, id_cliente?: string, id?: string){
 
-        const hasProduct = await productGateway.findOne(id_produto);
-        const hasClient = await clientGateway.findOne(id_cliente);
-        const hasUser = await userGateway.findOne(id_usuario);
-
-        if(!hasProduct) {
-            throw new Error("product not found");
-        } else if(!hasClient){
-            throw new Error("client not found");
-        } else if(!hasUser){
-            throw new Error("user not found");
-        }
-
-        const client_id = id_cliente == "" ? "S/C" : id_cliente;
 
         return new Sale ({
             id: id ?? crypto.randomUUID().toString(),
             id_usuario,
-            id_cliente: client_id,
+            id_cliente: id_cliente,
             id_produto,
             quantidade: +quantidade
         });

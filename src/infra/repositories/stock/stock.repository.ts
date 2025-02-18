@@ -35,4 +35,9 @@ export class StockRepository implements StockGateway {
         const [rows] = await this.pool.execute("select * from estoque where id_produto = ?", [id]);
         return rows.length > 0 ? rows[0] as Stock : null;
     }
+
+    public async reduceQuantityInStock(quantidade: number, id: string): Promise<void> {
+        await this.pool.execute("update estoque set quantidade = ? where id_produto = ?", [quantidade, id])
+    }
+
 }
