@@ -55,6 +55,7 @@ import { SaleRepository } from "./infra/repositories/sale/sale.repository";
 import { CreateSaleUsecase } from "./use-case/sale/create";
 import { ListSaleUsecase } from "./use-case/sale/list";
 import { ListSaleRoute } from "./infra/http/express/routes/sale/list";
+import { CreateSaleRoute } from "./infra/http/express/routes/sale/create";
 
 
 function main(){
@@ -172,11 +173,11 @@ function main(){
 
     //sale usecase
 
-    // const createSaleUsecase= CreateSaleUsecase.create(aClienRepository);
+    const createSaleUsecase= CreateSaleUsecase.create(aSaleRepository);
     const listSaleUsecase= ListSaleUsecase.create(aSaleRepository);
     
     //sale controller
-    // const createSaleRoute = CreateSaleRoute.create(createClientUsecase);
+    const createSaleRoute = CreateSaleRoute.create(createSaleUsecase);
     const listSaleRoute = ListSaleRoute.create(listSaleUsecase);
 
 
@@ -221,6 +222,7 @@ function main(){
         listClientRoute,
 
         listSaleRoute,
+        createSaleRoute,
 
         getIpRoute,
         loginRoute

@@ -32,7 +32,7 @@ export class CreateSaleRoute implements Route{
     public getHandler() {
         return async (request: Request, response: Response) =>{
             
-            const {client_id, product_id, quantity, user_id} = request.body();
+            const {client_id, product_id, quantity, user_id} = request.body;
             try {
 
                 const payload: saleInputDTO ={
