@@ -34,7 +34,7 @@ import { GetIp } from "./infra/http/express/routes/getIp/ip";
 import { SupplyRepository } from "./infra/repositories/supply/supply.repositorie";
 import { CreateSupplyUsecase } from "./use-case/supply/create.usecase";
 import { CreateSupplyRoute } from "./infra/http/express/routes/supply/create";
-import { ProductRepository } from "./infra/repositories/produc/product.repository";
+import { ProductRepository } from "./infra/repositories/product/product.repository";
 import { CreateProductUsecase } from "./use-case/product/create.usecase";
 import { CreateProductRoute } from "./infra/http/express/routes/product/create";
 import { ListProductUsecase } from "./use-case/product/list.usecase";

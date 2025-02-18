@@ -34,7 +34,7 @@ export class Sale {
         return new Sale ({
             id: id ?? crypto.randomUUID().toString(),
             id_usuario,
-            id_cliente: client_id ?? "S/C",
+            id_cliente: client_id,
             id_produto,
             quantidade: +quantidade
         });

@@ -15,7 +15,7 @@ export class SaleRepository implements SaleGateway {
     }
 
     public async save(sale: Sale): Promise<void> {
-        await this.pool.execute("insert into venda (id, id_cliente, id_usuario, quantidade) values (?,?,?,?)", [sale.id, sale.id_cliente, sale.id_usuario, sale.quantidade]);
+        await this.pool.execute("insert into venda (id, id_cliente, id_produto, id_usuario, quantidade) values (?,?, ?,?,?)", [sale.id, sale.id_cliente, sale.id_produto, sale.id_usuario, sale.quantidade]);
     }
 
     public async list(): Promise<Sale[]> {

@@ -12,7 +12,7 @@ export type saleInputDTO = {
     quantidade: number
 }
 
-export type saleOutputDTO = void;
+export type saleOutputDTO = Sale;
 
 export class CreateSaleUsecase implements Usecase<saleInputDTO, saleOutputDTO> {
 
@@ -22,12 +22,34 @@ export class CreateSaleUsecase implements Usecase<saleInputDTO, saleOutputDTO> {
         return new CreateSaleUsecase(saleGateway, productGateway, clientGateway, userGateway);
     }
 
-    public async execute({id_usuario, id_produto, quantidade, id_cliente}: saleInputDTO): Promise<void> {
+    public async execute({id_usuario, id_produto, quantidade, id_cliente}: saleInputDTO): Promise<Sale | any> {
 
         const aSale = await Sale.create(id_usuario, id_produto, quantidade, this.productGateway, this.clientGateway, this.userGateway, id_cliente);
 
         await this.saleGateway.save(aSale);
 
+        const output = await this.presentSaleTicket(aSale);
+
+        return output;
+
+    }
+
+    private async presentSaleTicket(input: Sale){
+        const aProduct = await this.productGateway.findOne(input.id_produto);
+        const aClient = await this.clientGateway.findOne(input.id_cliente);
+        const aUser = await this.userGateway.findOne(input.id_usuario);
+
+        const data = new Date();
+
+        return {
+            id: input.id,
+            quantidade: input.quantidade,
+            data_da_venda: data,
+            data_da_compra: input.created_at,
+            producto: aProduct,
+            clinte: aClient,
+            vendedor: aUser
+        }
 
     }
 

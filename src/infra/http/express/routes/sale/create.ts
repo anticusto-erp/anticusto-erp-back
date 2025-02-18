@@ -50,12 +50,15 @@ export class CreateSaleRoute implements Route{
                     }
                 }
 
-                await this.saleService.execute(payload);                
+                const aSale = await this.saleService.execute(payload);   
+                
+                response.status(200).json(aSale).send();
 
             } catch (error: any) {
                 response.status(400).json({message: error.message}).send()
             }
         }
     }
+
 
 }
