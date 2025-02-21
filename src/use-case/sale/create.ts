@@ -82,7 +82,7 @@ export class CreateSaleUsecase implements Usecase<saleInputDTO, saleOutputDTO> {
             data_da_venda: data,
             data_da_compra: input.created_at,
             producto: aProduct,
-            clinte: aClient,
+            cliente: aClient,
             vendedor: aEmployer,
             loja: aStore
         }
