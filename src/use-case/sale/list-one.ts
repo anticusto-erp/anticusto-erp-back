@@ -16,6 +16,7 @@ export type saleOutputDTO = {
         id_usuario: string;
         id_produto: string;
         quantidade: number,
+        totoal_a_pagar: number;
         create_at: string
     }
 }
@@ -46,10 +47,14 @@ export class ListOneSaleUsecase implements Usecase<string, saleOutputDTO> {
         const aClient = await this.clientGateway.findOne(input.id_cliente);
 
         const aUser = await this.userGateway.findOne(input.id_usuario);
-    
+
+        const productValue: any = aProduct?.preco
+        const total = productValue * input.quantidade;
+
         return {
             id: input.id,
             quantidade: input.quantidade,
+            total_a_pagar: total,
             created_at: input.created_at,
             producto: aProduct,
             cliente: aClient,

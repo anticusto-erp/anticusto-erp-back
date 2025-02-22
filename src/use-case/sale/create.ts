@@ -76,9 +76,13 @@ export class CreateSaleUsecase implements Usecase<saleInputDTO, saleOutputDTO> {
 
         const data = new Date();
 
+        const productValue: any = aProduct?.preco
+        const total = productValue * input.quantidade;
+
         return {
             id: input.id,
             quantidade: input.quantidade,
+            total_a_pagar: total,
             data_da_venda: data,
             data_da_compra: input.created_at,
             producto: aProduct,
