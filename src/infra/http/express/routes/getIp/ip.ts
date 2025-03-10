@@ -43,7 +43,7 @@ export class GetIp implements Route{
                   });
 
             } catch (error: any) {
-                response.status(404).json({message: error.message}).send();
+                response.status(400).json({message: error.message}).send();
                 
             }
         } 

@@ -24,6 +24,14 @@ export class AccessRoleRepository implements AcessRoleGateway{
         return rows as AcessRole[];
     }
 
+    public async delete(id: string): Promise<void> {
+        await this.pool.execute("delete from nivel_de_acesso where id= ?", [id]);
+    }
+
+    public async update(access: AcessRole): Promise<void> {
+        await this.pool.execute("update nivel_de_acesso set nivel_de_acesso = ? where id = ?", [access.access_role, access.id]);
+    }
+
     public async findByName(nivel: string): Promise<AcessRole | null> {
         const [rows] = await this.pool.execute("select * from nivel_de_acesso where nivel_de_acesso = ?", [nivel]);
 

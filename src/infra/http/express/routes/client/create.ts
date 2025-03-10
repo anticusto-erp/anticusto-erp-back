@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { CreateClientUsecase } from "../../../../../use-case/client/create";
+import { CreateClientUsecase } from "../../../../../use-case/client/create.usecase";
 import { HttpMethod, Route } from "../route";
 
 export type ClientInputDTO = {

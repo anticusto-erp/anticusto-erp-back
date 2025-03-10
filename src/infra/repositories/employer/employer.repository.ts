@@ -33,6 +33,18 @@ export class EmployerRepository implements EmployerGateway {
         return rows.length > 0 ? rows[0] as Employer : null;
     }
 
+    public async update(employer: Employer): Promise<void> {
+
+        await this.pool.execute("update funcionario set primeiro_nome = ?, ultimo_nome = ?, bi = ?, email = ?, telefone = ? where id = ?", [employer.firstName, employer.lastName, employer.bi, employer.email, employer.telephone, employer.id]);
+
+    }
+
+    public async delete(id: string): Promise<void> {
+
+        await this.pool.execute("delete from funcionario where id = ?", [id])
+
+    }
+
     public async findByBi(bi: string): Promise<Employer | null> {
         const [rows] = await this.pool.execute("select * from funcionario where bi = ?", [bi]);
 

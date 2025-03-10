@@ -19,8 +19,8 @@ export class ListAccesUsecase implements Usecase<AccessRoleInputDTO, AccessRoleO
     }
 
     public async execute(): Promise<any> {
-        const aUser = await this.accessGateway.list();
-        const output = this.present(aUser);
+        const aAccessRole = await this.accessGateway.list();
+        const output = this.present(aAccessRole);
 
         return output;
     }

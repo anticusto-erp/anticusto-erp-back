@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { CreateEmployerUsecase } from "../../../../../use-case/employer/create";
+import { CreateEmployerUsecase } from "../../../../../use-case/employer/create.usecase";
 import {HttpMethod, Route} from "../route";
 
 export type EmployerResponseDTO = void;

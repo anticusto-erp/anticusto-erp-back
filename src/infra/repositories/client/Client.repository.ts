@@ -24,11 +24,21 @@ export class ClientRepository implements ClientGateway {
         return rows as Client[];
     }
 
+    public async delete(id: string): Promise<void> {
+        await this.pool.execute("delete from cliente where id = ?", [id]);
+    }
+
     public async findOne(id?: string): Promise<Client | null> {
 
         const [rows] = await this.pool.execute("select * from cliente where id = ?", [id]);
 
         return rows.length > 0 ? rows[0] : null;
+    }
+
+    public async update(client: Client): Promise<void> {
+
+        await this.pool.execute("update cliente set nome = ?, bi = ?, telefone = ? where id = ?", [client.nome, client.bi, client.telefone, client.id]);
+
     }
 
     public async findOneByBi(bi?: string): Promise<Client | null> {

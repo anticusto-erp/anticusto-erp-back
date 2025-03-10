@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { HttpMethod, Route } from "../route";
-import { ListOneSaleUsecase } from "../../../../../use-case/sale/list-one";
+import { ListOneSaleUsecase } from "../../../../../use-case/sale/list-one.usecase";
 
 export type saleResponseDTO = {
     venda: {

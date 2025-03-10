@@ -15,6 +15,7 @@ export class AcessRole {
 
 
         const alreadyExist = await accessRoleGateway.findByName(access_role);
+
         
         if(alreadyExist){
             throw new Error("Role already exist");

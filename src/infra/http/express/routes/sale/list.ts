@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { ListSaleUsecase } from "../../../../../use-case/sale/list";
+import { ListSaleUsecase } from "../../../../../use-case/sale/list.usecase";
 import { HttpMethod, Route } from "../route";
 
 export type saleResponseDTO = {

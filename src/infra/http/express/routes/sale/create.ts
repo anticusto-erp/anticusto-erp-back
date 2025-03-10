@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { CreateSaleUsecase } from "../../../../../use-case/sale/create";
+import { CreateSaleUsecase } from "../../../../../use-case/sale/create.usecase";
 import { HttpMethod, Route } from "../route";
 import { Sale } from "../../../../../domain/sale/entity/Sale";
 

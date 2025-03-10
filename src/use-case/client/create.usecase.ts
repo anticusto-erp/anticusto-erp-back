@@ -22,8 +22,14 @@ export class CreateClientUsecase implements Usecase<ClientInputDTO, ClientOutput
 
         try {
 
-            const aCliente = await Client.create(name, bi, telephone, this.clientGateway);
-            // console.log(aCliente);
+            const clienteIsAlreadyRegister =  await this.clientGateway.findOneByBi(bi);
+
+            if(clienteIsAlreadyRegister) {
+                throw new Error(`Client with bi ${bi} already exists`);
+            }
+
+            const aCliente = await Client.create(name, bi, telephone);
+
             await this.clientGateway.save(aCliente);
             
         } catch (error: any) {

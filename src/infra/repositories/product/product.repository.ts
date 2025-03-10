@@ -14,18 +14,30 @@ export class ProductRepository implements ProductGateway{
         return new ProductRepository();
     }
 
-    async save(product: Product): Promise<void>{
+    public async save(product: Product): Promise<void>{
 
-        await this.pool.execute("insert into produto (id, nome, preco, descricao, created_at) values (?,?,?,?,?)", [product.id, product.nome, product.preco, product.descricao, product.created_at]);
+        await this.pool.execute("insert into produto (id, nome, preco, descricao, created_at, is_delete) values (?,?,?,?,?, false)", [product.id, product.nome, product.preco, product.descricao, product.created_at]);
     }
 
-    async list(): Promise<Product[]> {
-        const [rows] = await this.pool.execute("select * from produto order by created_at");
+    public async list(): Promise<Product[]> {
+        const [rows] = await this.pool.execute("select * from produto where is_delete = false order by created_at");
 
         return rows as Product[];
     }
 
-    async findOne(id: string): Promise<Product | null> {
+    public async update(product: Product): Promise<void> {
+
+        await this.pool.execute("update produto set nome = ?, preco = ?, descricao = ? where id = ?", [product.nome, product.preco, product.descricao, product.id]);
+
+    }
+
+    public async delete(id: string): Promise<void> {
+
+        await this.pool.execute("update produto set is_delete = true where id = ?", [id]);
+
+    }
+
+    public async findOne(id: string): Promise<Product | null> {
 
         const [rows] = await this.pool.execute("select * from produto where id = ?", [id]);
 

@@ -45,13 +45,13 @@ export class UpdateStoreRoute implements Route {
                     contact,
                 }
 
-                const update = await this.updateService.execute(payload);
+                await this.updateService.execute(payload);
 
                 response.status(204).send();
 
 
             } catch (error: any) {
-                throw new Error(error.message);
+                response.status(400).json({message: error?.message}).send();
             }
 
         } 

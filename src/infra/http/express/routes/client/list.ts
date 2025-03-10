@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { HttpMethod, Route } from "../route";
-import { ListClientUsecase } from "../../../../../use-case/client/list";
+import { ListClientUsecase } from "../../../../../use-case/client/list.usecase";
 
 export type ClientOutputDTO = {
     name: string;

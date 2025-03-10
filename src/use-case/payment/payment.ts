@@ -1,6 +1,5 @@
 import { Payment } from "../../domain/payment/entity/payment";
 import { PaymentGateway } from "../../domain/payment/gateway/payment.gateway";
-import { SaleGateway } from "../../domain/sale/gateway/sale.gateway";
 import { Usecase } from "../use-case";
 
 export type paypemtInputDTO = {

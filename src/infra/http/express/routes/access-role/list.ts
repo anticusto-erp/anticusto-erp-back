@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
-import { EmployerOutputDTO, ListEmployerUsecase } from "../../../../../use-case/employer/list";
+import { EmployerOutputDTO, ListEmployerUsecase } from "../../../../../use-case/employer/list.usecase";
 import { HttpMethod, Route } from "../route";
-import { ListAccesUsecase } from "../../../../../use-case/access-role/list";
+import { ListAccesUsecase } from "../../../../../use-case/access-role/list.usecase";
 
 export type AccessRoleOutputDTO = {
     access_role: {
